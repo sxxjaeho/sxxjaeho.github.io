@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-02-28T18:49:38+08:00</updated><id>http://localhost:4000/</id><title type="html">xpher</title><subtitle>enjoy life.</subtitle><author><name>CoderZeaho</name></author><entry><title type="html">Hidden Post</title><link href="http://localhost:4000/%E9%9A%90%E8%97%8F%E5%8F%91%E5%B8%83/" rel="alternate" type="text/html" title="Hidden Post" /><published>2018-02-25T00:00:00+08:00</published><updated>2018-02-25T00:00:00+08:00</updated><id>http://localhost:4000/%E9%9A%90%E8%97%8F%E5%8F%91%E5%B8%83</id><content type="html" xml:base="http://localhost:4000/%E9%9A%90%E8%97%8F%E5%8F%91%E5%B8%83/">&lt;p&gt;This post has YAML Front Matter of &lt;code class=&quot;highlighter-rouge&quot;&gt;hidden: true&lt;/code&gt; and should not appear in &lt;code class=&quot;highlighter-rouge&quot;&gt;paginator.posts&lt;/code&gt;.&lt;/p&gt;</content><author><name>CoderZeaho</name></author><summary type="html">This post has YAML Front Matter of hidden: true and should not appear in paginator.posts.</summary></entry><entry><title type="html">各种数据类型的空值判断方法</title><link href="http://localhost:4000/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/" rel="alternate" type="text/html" title="各种数据类型的空值判断方法" /><published>2016-11-05T20:08:50+08:00</published><updated>2016-11-05T20:08:50+08:00</updated><id>http://localhost:4000/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD</id><content type="html" xml:base="http://localhost:4000/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/">&lt;p&gt;在开发中,请求数据会遇到返回为空的情况,比如得到&lt;null&gt;的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回&lt;/null&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; id result;
+//遇到返回&amp;lt;null&amp;gt;的情况
+ if ([result isEqual:[NSNull null]]) {
+     return;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对于对象类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//可以使用 !(非) 来判断
+if（!object） return;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSString类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSString *string;
+string == nil;
+//or 
+[string isEqualToString:@&quot;&quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSNumber类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSNumber *number;
+number == nil;
+//or
+[number isEqualToNumber:@0];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSArray类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSArray *array;
+array == nil;
+//or
+[array count] = 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSDictionary类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSDictionary *dictionary;
+[dictionary isEqual:[NSNull null]];
+//or
+[dictionary count] = 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name></author><summary type="html">在开发中,请求数据会遇到返回为空的情况,比如得到的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回 id result; //遇到返回&amp;lt;null&amp;gt;的情况 if ([result isEqual:[NSNull null]]) { return; } 对于对象类型的数据进行空值判断</summary></entry><entry><title type="html">MAC下配置ZSH</title><link href="http://localhost:4000/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/" rel="alternate" type="text/html" title="MAC下配置ZSH" /><published>2016-08-24T20:08:50+08:00</published><updated>2016-08-24T20:08:50+08:00</updated><id>http://localhost:4000/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH</id><content type="html" xml:base="http://localhost:4000/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/">&lt;p&gt;Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。&lt;/p&gt;
+
+&lt;p&gt;MAC下面的终端是神器，在实际开发中为开发者带来许多方便，而程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等。&lt;/p&gt;
+
+&lt;p&gt;在 Linux 里执行这个命令和 MAC 略有不同，你会发现 Mac 多了一个 ZSH，也就是说 OS X 系统预装了个 ZSH，可惜的事ZSH不是很好用，需要配合一些插件和模板：oh-my-zsh&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-0d009c638e8b94eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;ZSH配合oh-my-zsh使用效果图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来吧，让我们一起来配置一下吧&lt;/p&gt;
+
+&lt;p&gt;1.打开终端，输入命令行，将bash切换为zsh&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chsh -s /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;直接用zsh会很蛋疼，因为zsh功能很强大但是太复杂，所以需要oh-my-zsh来将它简单化。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2.输入命令行，下载oh-my-zsh&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//1)直接用git从github上面下载包
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//2) 备份已有的zshrc
+cp ~/.zshrc ~/.zshrc.orig
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//3)替换zshrc
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;3.重启终端，大功告成，就是这么简单&lt;/p&gt;
+
+&lt;p&gt;按照步骤安装完后，可以配置一些常用的命令的“别名”
+在根目录下输入以下命令&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi .zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;翻到最下面,输入”i”,vim编辑器插入状态,可以为常用命令起别名,例如:alias gs=’git status’,插入后”ESC”,输入”:wq”(双引号不敲 –”),退出vim编辑器;重启终端或者输入以下命令立即生效&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source .zshrc.local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-9e5568668755fa8c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;别名配置如图&quot; /&gt;
+这样就好了,快在ZSH下使用你短命令吧
+***&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;附:简化git命令&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config --global alias.&amp;lt;handle&amp;gt; &amp;lt;command&amp;gt;
+
+比如：git status 改成 git st，这样可以简化命令
+
+git config --global alias.st status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name></author><summary type="html">Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</summary></entry></feed>
