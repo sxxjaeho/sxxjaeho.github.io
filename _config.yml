@@ -93,8 +93,8 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true
-      share: true
+      comments: false
+      share: false
   # Recipe defaults
   - scope:
       path: "_recipes"
@@ -108,7 +108,7 @@ defaults:
 author:
   name: CoderZeaho
   picture: /images/avatar.png
-  email:
+  email: zeaho_ace@foxmail.com
   twitter: mmistakes
   links:
     # - title: Twitter
