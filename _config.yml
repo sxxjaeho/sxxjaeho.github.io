@@ -117,9 +117,9 @@ author:
     # - title: Instagram
     #   url: https://instagram.com/mmistakes
     #   icon: fab fa-instagram
-    - title: GitHub
-      url: https://github.com/CoderZeaho
-      icon: fab fa-github-square
+    # - title: GitHub
+    #   url: https://github.com/CoderZeaho
+    #   icon: fab fa-github-square
 
 # Footer Links
 footer_links:
