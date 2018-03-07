@@ -107,7 +107,7 @@ defaults:
 # Site Author
 author:
   name: CoderZeaho
-  picture: /images/avatar.png
+  picture: /images/image-default-avatar.png
   email: zeaho_ace@foxmail.com
   twitter: mmistakes
   links:

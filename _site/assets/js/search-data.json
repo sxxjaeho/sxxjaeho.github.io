@@ -17,5 +17,5 @@ var store = [{
         "title": "Sublime Text插件安装方法",
         "excerpt":"1.通过 Package Control 进行在线安装说在前面:Package Control 是一个用来进行在线安装插件的工具，在安装插件前需要先安装 Package Control。安装 Package Control安装方法：通过快捷键 Ctrl + `打开 Console，在最底部把下面的代码复制粘贴过去后回车，然后稍微等待一段时间。import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s),...","categories": [],
         "tags": [],
-        "url": "http://localhost:4000/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/"
+        "url": "http://localhost:4000/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD%E7%9A%84%E5%89%AF%E6%9C%AC/"
       },]
