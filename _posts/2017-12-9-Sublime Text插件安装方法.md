@@ -2,6 +2,8 @@
 title: "Sublime Text插件安装方法"
 date: 2017-12-9T08:08:50-04:00
 share: false
+categories:
+  - Plugins
 ---
 
 #### 1.通过 Package Control 进行在线安装

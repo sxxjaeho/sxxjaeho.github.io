@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.1.0
+    Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>数组元素和数组名作为函数参数 | xpher</title>
+<meta property="og:title" content="数组元素和数组名作为函数参数" />
+<meta name="author" content="CoderZeaho" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="数组用作函数参数有两种形式： 一种是把数组元素（下标变量）作为实参使用；" />
+<meta property="og:description" content="数组用作函数参数有两种形式： 一种是把数组元素（下标变量）作为实参使用；" />
+<link rel="canonical" href="https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" />
+<meta property="og:url" content="https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" />
+<meta property="og:site_name" content="xpher" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-09T20:08:50+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@mmistakes" />
+<meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
+<script type="application/ld+json">
+{"name":null,"description":"数组用作函数参数有两种形式： 一种是把数组元素（下标变量）作为实参使用；","url":"https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/","headline":"数组元素和数组名作为函数参数","dateModified":"2016-03-09T20:08:50+08:00","datePublished":"2016-03-09T20:08:50+08:00","sameAs":null,"@type":"BlogPosting","author":{"@type":"Person","name":"CoderZeaho"},"image":null,"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://coderzeaho.github.io/images/so-simple-site-logo.png"},"name":"CoderZeaho"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="xpher" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  数组元素和数组名作为函数参数">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Archive</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="xpher">
+        <img src="/images/so-simple-site-logo.png" class="site-logo-img animated fadeInDown" alt="xpher">
+      </a>
+    
+    
+      <h1 class="site-title animated fadeIn"><a href="/">xpher</a></h1>
+      <p class="site-description animated fadeIn" itemprop="description">enjoy life.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">数组元素和数组名作为函数参数
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/image-default-avatar.png" class="author-avatar u-photo" alt="CoderZeaho"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">CoderZeaho</span>
+      </div>
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2016-03-09T20:08:50+08:00"><a class="u-url" href="">March 9, 2016</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#c" title="Pages filed under C">C</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h3 id="数组用作函数参数有两种形式">数组用作函数参数有两种形式：</h3>
+<p>一种是把数组元素（下标变量）作为实参使用；</p>
+
+<p>一种是把数组名作为函数的形参和实参使用。</p>
+
+<h4 id="1数组元素下标变量作为实参使用">1、数组元素（下标变量）作为实参使用</h4>
+<p>数组元素作为函数实参使用与普通变量是完全相同的，在发生函数调用时，把作为实参的数组元素的值传给形参，只是“拷贝”实参中的变量的值，传送给形参，实现单向的值传送
+<img src="https://upload-images.jianshu.io/upload_images/1712780-7604f5a89a0389f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1712780-0c3e72461b50aec2.png" /></p>
+
+<h4 id="2数组名作为函数参数">2、数组名作为函数参数</h4>
+<p>用数组名作为函数参数与用数组元素作实参有几点不同</p>
+
+<ul>
+  <li>
+    <p>用数组元素作函数参数不要求形参也必须是数组，但是用数组名作函数参数时，则要求形参和相对应的实参都是类型相同的数组</p>
+  </li>
+  <li>
+    <p>在C语言中，数组名除作为变量的标识符之外，数组名还代表了该数组在内存中的起始地址，当数组名作函数参数时，实参与形参之间不是“值传递”，而是“地址传递”，实参数组名将该数组的其实地址传给形参数组，两个数组共享一段内存单元，编译系统不再为形参数组分配存储单元。</p>
+  </li>
+  <li>
+    <p>在变量做函数参数时，所进行的值传递是单向的。即只能从实参传向形参，不能从形参传回实参。</p>
+  </li>
+</ul>
+
+<h4 id="3数组名作为函数参数注意事项">3、数组名作为函数参数注意事项</h4>
+<ul>
+  <li>
+    <p>形参数组和实参数组类型必须一致，否则出错</p>
+  </li>
+  <li>
+    <p>在函数形参表中，允许不给出形参数组的长度，或用一个变量来表示数组元素的个数</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void xzh(int a[])
+</code></pre></div></div>
+<p>或写为</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void xzh(int a[],int n)
+</code></pre></div></div>
+
+<p>n的值由主调函数的实参进行传递</p>
+
+<p><del>所有的地址都占8个字节</del></p>
+
+<ul>
+  <li>形参数组和实参数组长度可以不相同，因为在调用时，只传递首地址而不检查形参数组的长度。</li>
+</ul>
+
+
+        </div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+
+  
+    <a class="page-next" href="/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        MAC下配置ZSH
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <div align="center" style="margin: 1em 0;">
+  <ins class="adsbygoogle"
+        style="display:block; border-bottom: initial;"
+        data-ad-client="ca-pub-7328585512091257"
+        data-ad-slot="3049671934"
+        data-ad-format="auto"></ins>
+  </div>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script> -->
+<div class="social-icons"><a class="social-icon" href="https://github.com/CoderZeaho"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2018 xpher. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </body>
+
+</html>
