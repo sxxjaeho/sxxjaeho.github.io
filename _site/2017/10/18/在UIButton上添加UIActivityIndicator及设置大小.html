@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在UIButton上添加UIActivityIndicator及设置大小 - xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="在UIButton上添加UIActivityIndicator及设置大小">
+    <meta name="keywords"  content="Objective-C">
+    <!-- Open Graph -->
+    <meta property="og:title" content="在UIButton上添加UIActivityIndicator及设置大小 - xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2017/10/18/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F.html">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+    <!-- <div class="g-logo">
+      <a href="/"></a>
+    </div> -->
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">首页</a></li>
+            
+            <li><a href="/tags.html">标签</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-seaOfClouds bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#Objective-C" class="post-tag">Objective-C</a>
+          
+        
+      </div>
+      <h1>在UIButton上添加UIActivityIndicator及设置大小</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
+        <time class="post-meta-item" datetime="17-10-18"><i class="iconfont icon-date"></i>18 Oct 2017</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <p>开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1712780-8f2fac0aff3ee5a1.gif?imageMogr2/auto-orient/strip" alt="" /></p>
+
+<p>直接上代码</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    //初始化按钮
+    UIButton *addFriendButton = [UIButton emptyFrameView];
+    addFriendButton.layer.masksToBounds = YES;
+    addFriendButton.layer.cornerRadius = 4.f;
+    addFriendButton.layer.borderWidth = 0.5f;
+    addFriendButton.layer.borderColor = [[UIColor green1Color] CGColor];
+    addFriendButton.titleLabel.font = [UIFont systemFontOfSize:12.1];
+    [addFriendButton setBackgroundColor:[UIColor white1Color]];
+    [addFriendButton setTitle:@"+好友" forState:UIControlStateNormal];
+    [addFriendButton addTarget:self action:@selector(didClickAddFriend:) forControlEvents:UIControlEventTouchUpInside];
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- (IBAction)didClickAddFriend:(id)sender{
+    //将文字置空
+    [self.addFriendButton setTitle:nil forState:UIControlStateNormal];
+    //初始化系统小菊花
+    UIActivityIndicatorView *addFriendActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.addFriendButton.bounds];
+    [addFriendActivityIndicator setUserInteractionEnabled:YES];
+    [addFriendActivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+    //改变小菊花颜色
+    [addFriendActivityIndicator setColor:[UIColor green1Color]];
+    //下文去解释下面这两行行代码的作用
+    //CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    //addFriendActivityIndicator.transform = transform;
+    [self.addFriendButton addSubview:addFriendActivityIndicator];
+    //小菊花开始转圈圈
+    [addFriendActivityIndicator startAnimating];
+    //用block实现加好友操作
+    if ([self addFriendHandler]) {
+        self.addFriendHandler();
+    }
+}
+</code></pre></div></div>
+
+<blockquote>
+  <p>UIActivityIndicatorView不能自定义大小,创建的UIActivityIndicatorView有三种style,这三种style有默认的大小,不能通过设置frame的方式来修改大小,那么上面代码中注释的那一行就起作用了
+需求:需要把显示的UIActivityIndicatorView显示得比预定义的小,实现的方式是通过transform来修改显示UIActivityIndicatorView的显示大小</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    addFriendActivityIndicator.transform = transform;
+</code></pre></div></div>
+
+
+    </article>
+
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">xpher</div>
+      <div class="bio">
+        <p>iOS开发工程师，一个努力成长的程序员。</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/CoderZeaho" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                    <i class="iconfont icon-jianshu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//weibo.com/seozeaho" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//veryins.com/coder_zeaho" target="_blank">
+                    <i class="iconfont icon-instagram"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html" class="read-next-link"></a>
+        <section>
+          <span>Swift 2.0 到 Swift 3.0</span>
+          <p>  问: 报错:The “Swift Language Version” (SWIFT_VERSION) buil...</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2016/11/05/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.html" class="read-next-link"></a>
+          <section>
+            <span>各种数据类型的空值判断方法</span>
+            <p>在开发中,请求数据会遇到返回为空的情况,比如得到的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
