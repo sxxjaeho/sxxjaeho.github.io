@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC下配置ZSH - xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="MAC下配置ZSH">
+    <meta name="keywords"  content="ZSH">
+    <!-- Open Graph -->
+    <meta property="og:title" content="MAC下配置ZSH - xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2016/08/24/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH.html">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+    <!-- <div class="g-logo">
+      <a href="/"></a>
+    </div> -->
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">首页</a></li>
+            
+            <li><a href="/tags.html">标签</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-seaOfClouds bgcolor-default "
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#ZSH" class="post-tag">ZSH</a>
+          
+        
+      </div>
+      <h1>MAC下配置ZSH</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
+        <time class="post-meta-item" datetime="16-08-24"><i class="iconfont icon-date"></i>24 Aug 2016</time>
+      </div>
+    </div>
+    
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('https://i.loli.net/2018/10/12/5bc03f507cf03.png') center no-repeat; background-size: cover;"></div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</p>
+
+<p>MAC下面的终端是神器，在实际开发中为开发者带来许多方便，而程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等。</p>
+
+<p>在 Linux 里执行这个命令和 MAC 略有不同，你会发现 Mac 多了一个 ZSH，也就是说 OS X 系统预装了个 ZSH，可惜的事ZSH不是很好用，需要配合一些插件和模板：oh-my-zsh</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1712780-0d009c638e8b94eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ZSH配合oh-my-zsh使用效果图" /></p>
+
+<p>来吧，让我们一起来配置一下吧</p>
+
+<p>1.打开终端，输入命令行，将bash切换为zsh</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chsh -s /bin/zsh
+</code></pre></div></div>
+<blockquote>
+  <p>直接用zsh会很蛋疼，因为zsh功能很强大但是太复杂，所以需要oh-my-zsh来将它简单化。</p>
+</blockquote>
+
+<p>2.输入命令行，下载oh-my-zsh</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//1)直接用git从github上面下载包
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//2) 备份已有的zshrc
+cp ~/.zshrc ~/.zshrc.orig
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//3)替换zshrc
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre></div></div>
+<p>3.重启终端，大功告成，就是这么简单</p>
+
+<p>按照步骤安装完后，可以配置一些常用的命令的“别名”
+在根目录下输入以下命令</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi .zshrc
+</code></pre></div></div>
+<p>翻到最下面，输入”i”，vim编辑器插入状态，可以为常用命令起别名，例如：alias gs=’git status’，插入后”ESC”，输入”:wq”(双引号不敲 –”)，退出vim编辑器，重启终端或者输入以下命令立即生效</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source .zshrc.local
+</code></pre></div></div>
+<p><img src="http://upload-images.jianshu.io/upload_images/1712780-9e5568668755fa8c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="别名配置如图" />
+这样就好了，快在ZSH下使用你短命令吧</p>
+
+<hr />
+<blockquote>
+  <p>附：简化git命令</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git config --global alias.&lt;handle&gt; &lt;command&gt;
+
+比如：git status 改成 git st，这样可以简化命令
+
+git config --global alias.st status
+</code></pre></div></div>
+
+
+    </article>
+
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">xpher</div>
+      <div class="bio">
+        <p>iOS开发工程师，一个努力成长的程序员。</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/CoderZeaho" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                    <i class="iconfont icon-jianshu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//weibo.com/seozeaho" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//veryins.com/coder_zeaho" target="_blank">
+                    <i class="iconfont icon-instagram"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2016/09/22/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2.html" class="read-next-link"></a>
+        <section>
+          <span>NSDate与时间戳互相转换</span>
+          <p>  NSString日期转换为时间戳：</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2016/03/09/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0.html" class="read-next-link"></a>
+          <section>
+            <span>数组元素和数组名作为函数参数</span>
+            <p>数组用作函数参数有两种形式：一种是把数组元素（下标变量）作为实参使用；</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

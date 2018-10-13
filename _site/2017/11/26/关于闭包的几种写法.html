@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于闭包的几种写法 - xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="关于闭包的几种写法">
+    <meta name="keywords"  content="Swift">
+    <!-- Open Graph -->
+    <meta property="og:title" content="关于闭包的几种写法 - xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2017/11/26/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95.html">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+    <!-- <div class="g-logo">
+      <a href="/"></a>
+    </div> -->
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">首页</a></li>
+            
+            <li><a href="/tags.html">标签</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-seaOfClouds bgcolor-default "
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#Swift" class="post-tag">Swift</a>
+          
+        
+      </div>
+      <h1>关于闭包的几种写法</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
+        <time class="post-meta-item" datetime="17-11-26"><i class="iconfont icon-date"></i>26 Nov 2017</time>
+      </div>
+    </div>
+    
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('https://i.loli.net/2018/10/12/5bc03ed2a4f0d.png') center no-repeat; background-size: cover;"></div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h1 id="闭包">闭包</h1>
+<p>闭包是一个特殊的函数,经常用于回调</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//  定义闭包
+类型 : (形参) -&gt; (返回值)
+
+//  闭包执行回调
+类型(值)
+
+//  闭包实现回调
+{
+    (形参) -&gt; (返回值) in
+    //  执行代码
+}
+</code></pre></div></div>
+
+<p>简单举个例子:在方法中定义闭包实现回调传值</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKHttpTool.swift
+
+import Foundation
+
+class WJKHttpTool : NSObject {
+     //  MARK:定义闭包
+     func loadData(completion : (_ result : Bool) -&gt; ()) -&gt; () {
+        //  MARK:闭包执行回调
+        completion(true)
+    }
+}
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKViewController.swift
+
+import UIKit
+
+class ViewController : UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let httpTool : WJKHttpTool = WJKHttpTool()
+        
+        //  MARK:闭包实现回调
+         httpTool.loadData (completion: { (result) -&gt; () in
+             print(result)
+        })
+}
+</code></pre></div></div>
+
+<p>尾随闭包:
+1.如果闭包是函数的最后一个参数,则可以将闭包写在()后面
+2.如果函数只有一个参数,并且这个参数是闭包,那么()可以不写</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>上述闭包则为尾随闭包则可以写成
+httpTool.loadData() { (result) -&gt; () in
+    print(result)
+}
+
+当然开发中建议(包括代码中敲回车代码补全)写成
+httpTool.loadData { (result) -&gt; () in
+    print(result)
+}
+</code></pre></div></div>
+
+<hr />
+
+<h5 id="扩展">扩展</h5>
+<ul>
+  <li>如果闭包没有参数,没有返回值部分内容可以省略</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>如上述例子中没有返回值则可以写成
+httpTool.loadData (completion: { (result) in
+    print(result)
+})
+
+当然如果是尾随闭包则可以写成
+httpTool.loadData { (result) in
+    print(result)
+}
+//  所以上述写法就是最简写法(官方推荐写法)了
+</code></pre></div></div>
+
+<ul>
+  <li>解决循环引用</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>httpTool.loadData {[weak self] (result) in
+    print(result)
+    self?.view.backgroundColor = UIColor.white
+}
+</code></pre></div></div>
+
+
+    </article>
+
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">xpher</div>
+      <div class="bio">
+        <p>iOS开发工程师，一个努力成长的程序员。</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/CoderZeaho" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                    <i class="iconfont icon-jianshu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//weibo.com/seozeaho" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//veryins.com/coder_zeaho" target="_blank">
+                    <i class="iconfont icon-instagram"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" class="read-next-link"></a>
+        <section>
+          <span>Sublime Text插件安装方法</span>
+          <p>1.通过 Package Control 进行在线安装说在前面:Package Control 是一个用来进行在线...</p>
+        </section>
+        
+        <div class="filter"></div>
+        <img src="https://i.loli.net/2018/10/12/5bc03f2f74100.jpg" alt="">
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html" class="read-next-link"></a>
+          <section>
+            <span>Swift 2.0 到 Swift 3.0</span>
+            <p>  问: 报错:The “Swift Language Version” (SWIFT_VERSION) buil...</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

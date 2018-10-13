@@ -1,444 +1,314 @@
 <!DOCTYPE html>
-<!--
-    So Simple Jekyll Theme 3.1.0
-    Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-    Free for personal and commercial use under the MIT license
-    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
--->
-<html lang="en-US" class="no-js">
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  
-
-  
-    
-    <!-- Begin Jekyll SEO tag v2.3.0 -->
-<title>xpher | enjoy life.</title>
-<meta property="og:title" content="xpher" />
-<meta name="author" content="CoderZeaho" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="s" />
-<meta property="og:description" content="s" />
-<link rel="canonical" href="https://coderzeaho.github.io/" />
-<meta property="og:url" content="https://coderzeaho.github.io/" />
-<meta property="og:site_name" content="xpher" />
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@mmistakes" />
-<meta name="twitter:creator" content="@mmistakes" />
-<meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
-<script type="application/ld+json">
-{"name":"xpher","description":"s","url":"https://coderzeaho.github.io/","headline":"xpher","dateModified":null,"datePublished":null,"sameAs":null,"@type":"WebSite","author":{"@type":"Person","name":"CoderZeaho"},"image":null,"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://coderzeaho.github.io/images/so-simple-site-logo.png"},"name":"CoderZeaho"},"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-  
-
-  <script>
-    /* Cut the mustard */
-    if ( 'querySelector' in document && 'addEventListener' in window ) {
-      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
-    }
-  </script>
-
-  <link rel="stylesheet" href="/assets/css/main.css">
-  
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
-  <link rel="alternate" type="application/atom+xml" title="xpher" href="/atom.xml">
-<!-- start custom head snippets -->
-
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
-
-<!-- end custom head snippets -->
-
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="一个努力成长的程序员">
+    <meta name="keywords"  content="小屁孩儿, 徐在虎, iOS, iOS开发, Objective-C, Swift, 开发, 开发工程师">
+    <!-- Open Graph -->
+    <meta property="og:title" content="xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_271755_rdxzzo2kqwk.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-
-  <body class="layout--home  ">
-    <nav class="skip-links">
-  <h2 class="screen-reader-text">Skip links</h2>
-  <ul>
-    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
-    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
-    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
-  </ul>
-</nav>
-
-    
-  <div class="navigation-wrapper">
-    <a href="#menu-toggle" id="menu-toggle">Menu</a>
-    <nav id="primary-nav" class="site-nav animated drop">
-      <ul><li><a href="/posts/">Archive</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+<body>
+    <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+    <input id="nm-switch" type="hidden" value="false">
+    <div class="visible">
+      <header class="g-header">
+    <!-- <div class="g-logo">
+      <a href="/"></a>
+    </div> -->
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">首页</a></li>
+            
+            <li><a href="/tags.html">标签</a></li>
+            
+        </ul>
     </nav>
-  </div><!-- /.navigation-wrapper -->
+</header>
 
 
-    <header class="masthead">
-  <div class="wrap">
-    
-      <a href="/" class="site-logo" rel="home" title="xpher">
-        <img src="/images/so-simple-site-logo.png" class="site-logo-img animated fadeInDown" alt="xpher">
-      </a>
-    
-    
-      <h1 class="site-title animated fadeIn"><a href="/">xpher</a></h1>
-      <p class="site-description animated fadeIn" itemprop="description">enjoy life.</p>
-    
-  </div>
-</header><!-- /.masthead -->
-
-
-    <main id="main" class="main-content" aria-label="Content">
-  <article>
-    
-
-    <div class="page-wrapper">
-      <header class="page-header">
-        
-        
-          <h1 id="page-title" class="page-title"></h1>
-        
-      </header>
-      <div class="page-content">
-        
-
-<div class="entries-list">
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/plugins/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/" rel="bookmark">Sublime Text插件安装方法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h4 id="1通过-package-control-进行在线安装">1.通过 Package Control 进行在线安装</h4>
-<p>说在前面:Package Control 是一个用来进行在线安装插件的工具，在安装插件前需要先安装 Package Control。</p>
-
-
-        <div class="more-link">
-          <a href="/plugins/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2017-12-09T20:08:50+08:00">December 9, 2017
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/swift/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/" rel="bookmark">关于闭包的几种写法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h1 id="闭包">闭包</h1>
-<p>闭包是一个特殊的函数,经常用于回调</p>
-
-
-        <div class="more-link">
-          <a href="/swift/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2017-11-26T20:08:50+08:00">November 26, 2017
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/swift/Swift-2.0-%E5%88%B0-Swift-3.0/" rel="bookmark">Swift 2.0 到 Swift 3.0
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <blockquote>
-  <p>问: 报错:The “Swift Language Version” (SWIFT_VERSION) build setting must be set to a supported value for targets which use Swift. This setting can be set in the build settings editor.</p>
-</blockquote>
-
-
-        <div class="more-link">
-          <a href="/swift/Swift-2.0-%E5%88%B0-Swift-3.0/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2017-11-24T20:08:50+08:00">November 24, 2017
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/" rel="bookmark">在UIButton上添加UIActivityIndicator及设置大小
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮</p>
-
-
-        <div class="more-link">
-          <a href="/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2017-10-18T20:08:50+08:00">October 18, 2017
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/" rel="bookmark">各种数据类型的空值判断方法
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>在开发中,请求数据会遇到返回为空的情况,比如得到<null>的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</null></p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> id result;
-//遇到返回&lt;null&gt;的情况
- if ([result isEqual:[NSNull null]]) {
-     return;
-}
-</code></pre></div></div>
-<blockquote>
-  <p>对于对象类型的数据进行空值判断</p>
-</blockquote>
-
-
-        <div class="more-link">
-          <a href="/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2016-11-05T20:08:50+08:00">November 5, 2016
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/objective-c/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" rel="bookmark">NSDate与时间戳互相转换
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <blockquote>
-  <p>NSString日期转换为时间戳：</p>
-</blockquote>
-
-
-        <div class="more-link">
-          <a href="/objective-c/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2016-09-22T20:08:50+08:00">September 22, 2016
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/" rel="bookmark">MAC下配置ZSH
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</p>
-
-
-        <div class="more-link">
-          <a href="/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2016-08-24T20:08:50+08:00">August 24, 2016
-  </time>
-    </footer>
-  
-</article>
-
-
-<article class="entry h-entry">
-  <header class="entry-header">
-    <h3 class="entry-title p-name">
-      
-        <a href="/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" rel="bookmark">数组元素和数组名作为函数参数
-</a>
-      
-    </h3>
-    
-  </header>
-  
-    <div class="entry-excerpt p-summary">
-      
-        <h3 id="数组用作函数参数有两种形式">数组用作函数参数有两种形式：</h3>
-<p>一种是把数组元素（下标变量）作为实参使用；</p>
-
-
-        <div class="more-link">
-          <a href="/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/">Read more&hellip;</a>
-        </div>
-      
-    </div>
-  
-  
-    <footer class="entry-meta">
-      
-
-<span class="read-time">~1 min read</span>
-
-      <time class="entry-date dt-published" datetime="2016-03-09T20:08:50+08:00">March 9, 2016
-  </time>
-    </footer>
-  
-</article>
-<!-- Pagination links -->
-
+<div
+    class="g-banner home-banner banner-theme-default"
+    data-theme="default"
+    style="background: url(/assets/img/work.jpg) no-repeat center center; background-size: cover;"
+>
+    <h2></h2>
+    <h3></h3>
 </div>
 
+<main class="g-container home-content">
+    <div class="article-list">
+        
+            <article class="article-item">
+                
+                <div class="post-cover">
+                    <a class="post-link" href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" title="Sublime Text插件安装方法"></a>
+                    <img src="https://i.loli.net/2018/10/12/5bc03f2f74100.jpg" href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" alt="">
+                </div>
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" title="Sublime Text插件安装方法"></a>
+                    <h2 class="post-title">Sublime Text插件安装方法</h2>
+                    
+                    
+                    <p class="post-excerpt">1.通过 Package Control 进行在线安装说在前面:Package Control 是一个用来进行在线安装插件的工具，在安装插件前需要先安装 Package Control。</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Plugins class="post-tag">Plugins</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="17-12-09">09 Dec 2017</time>
+                </footer>
+            </article>
+        
+            <article class="article-item">
+                
+                <div class="post-cover">
+                    <a class="post-link" href="/2017/11/26/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95.html" title="关于闭包的几种写法"></a>
+                    <img src="https://i.loli.net/2018/10/12/5bc03ed2a4f0d.png" href="/2017/11/26/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95.html" alt="">
+                </div>
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2017/11/26/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95.html" title="关于闭包的几种写法"></a>
+                    <h2 class="post-title">关于闭包的几种写法</h2>
+                    
+                    
+                    <p class="post-excerpt">闭包闭包是一个特殊的函数,经常用于回调</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Swift class="post-tag">Swift</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="17-11-26">26 Nov 2017</time>
+                </footer>
+            </article>
+        
+            <article class="article-item">
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html" title="Swift 2.0 到 Swift 3.0"></a>
+                    <h2 class="post-title">Swift 2.0 到 Swift 3.0</h2>
+                    
+                    
+                    <p class="post-excerpt">  问: 报错:The “Swift Language Version” (SWIFT_VERSION) build setting must be set to a supported value for targets which use S...</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Swift class="post-tag">Swift</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="17-11-24">24 Nov 2017</time>
+                </footer>
+            </article>
+        
+            <article class="article-item">
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2017/10/18/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F.html" title="在UIButton上添加UIActivityIndicator及设置大小"></a>
+                    <h2 class="post-title">在UIButton上添加UIActivityIndicator及设置大小</h2>
+                    
+                    
+                    <p class="post-excerpt">开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Objective-C class="post-tag">Objective-C</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="17-10-18">18 Oct 2017</time>
+                </footer>
+            </article>
+        
+            <article class="article-item">
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2016/11/05/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.html" title="各种数据类型的空值判断方法"></a>
+                    <h2 class="post-title">各种数据类型的空值判断方法</h2>
+                    
+                    
+                    <p class="post-excerpt">在开发中,请求数据会遇到返回为空的情况,比如得到的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Objective-C class="post-tag">Objective-C</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="16-11-05">05 Nov 2016</time>
+                </footer>
+            </article>
+        
+            <article class="article-item">
+                
+                <section class="post-preview">
+                    <a class="post-link" href="/2016/09/22/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2.html" title="NSDate与时间戳互相转换"></a>
+                    <h2 class="post-title">NSDate与时间戳互相转换</h2>
+                    
+                    
+                    <p class="post-excerpt">  NSString日期转换为时间戳：</p>
+                    
+                </section>
+                <footer class="post-meta">
+                    <div class="post-tags">
+                        
+                            
+                            <a href=tags.html#Objective-C class="post-tag">Objective-C</a>
+                            
+                        
+                    </div>
+                    <time class="post-date" datetime="16-09-22">22 Sep 2016</time>
+                </footer>
+            </article>
+        
 
         
-      </div>
+            <nav class="pagination">
+    <input type="hidden" id="total_pages" value="2">
+    <input type="hidden" id="current_pages" value="1">
+    <input type="hidden" id="base_url" value="/">
+    <div class="page-links">
+        
+        <div id="page-link-container"></div>
+        
+        <a href="/page2/" class="page-link">&raquo;</a>
+        
     </div>
-  </article>
+</nav>
+
+        
+
+    </div>
+
+    <aside class="g-sidebar-wrapper">
+        <div class="g-sidebar">
+            <section class="author-card">
+                <div class="avatar">
+                    <img src="/assets/img/profile.png" alt="">
+                </div>
+                <div class="author-name" rel="author">xpher</div>
+                <div class="bio">
+                    <p>iOS开发工程师，一个努力成长的程序员。</p>
+                </div>
+                
+                <ul id="sns-links" class="sns-links">
+                    
+                    <li>
+                        <a href="//github.com/CoderZeaho" target="_blank">
+                            <i class="iconfont icon-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                            <i class="iconfont icon-jianshu"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="//weibo.com/seozeaho" target="_blank">
+                            <i class="iconfont icon-weibo"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="//veryins.com/coder_zeaho" target="_blank">
+                            <i class="iconfont icon-instagram"></i>
+                        </a>
+                    </li>
+                    
+                </ul>
+                
+            </section>
+
+            
+            <section class="tags-card">
+                
+                    
+                    <a href="tags.html#C语言" class="tag">C语言</a>
+                
+                    
+                    <a href="tags.html#ZSH" class="tag">ZSH</a>
+                
+                    
+                    <a href="tags.html#Objective-C" class="tag">Objective-C</a>
+                
+                    
+                    <a href="tags.html#Swift" class="tag">Swift</a>
+                
+                    
+                    <a href="tags.html#Plugins" class="tag">Plugins</a>
+                
+            </section>
+            
+        </div>
+
+        
+        <div class="search-card">
+            <input id="search_input" type="text" placeholder="Search..." autocomplete="off">
+            <i class="iconfont icon-search"></i>
+            <div class="search_result"></div>
+        </div>
+        
+
+    </aside>
+
 </main>
 
-
-    <footer id="footer" class="site-footer">
-  <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <div align="center" style="margin: 1em 0;">
-  <ins class="adsbygoogle"
-        style="display:block; border-bottom: initial;"
-        data-ad-client="ca-pub-7328585512091257"
-        data-ad-slot="3049671934"
-        data-ad-format="auto"></ins>
-  </div>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script> -->
-<div class="social-icons"><a class="social-icon" href="https://github.com/CoderZeaho"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a></div><div class="copyright">
-    
-      <p>&copy; 2018 xpher. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
-    
-  </div>
+<footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2018
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
 </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
 
-
-<!-- MathJax -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  </body>
-
+    </div>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/assets/js/prism.js"></script>
+    <script src="/assets/js/index.min.js"></script>
+</body>
 </html>
