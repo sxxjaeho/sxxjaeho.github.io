@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.1.0
+    Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>在UIButton上添加UIActivityIndicator及设置大小 | xpher</title>
+<meta property="og:title" content="在UIButton上添加UIActivityIndicator及设置大小" />
+<meta name="author" content="CoderZeaho" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮" />
+<meta property="og:description" content="开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮" />
+<link rel="canonical" href="https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/" />
+<meta property="og:url" content="https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/" />
+<meta property="og:site_name" content="xpher" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-18T20:08:50+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@mmistakes" />
+<meta name="twitter:creator" content="@mmistakes" />
+<meta name="google-site-verification" content="UQj93ERU9zgECodaaXgVpkjrFn9UrDMEzVamacSoQ8Y" />
+<script type="application/ld+json">
+{"name":null,"description":"开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮","url":"https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/","headline":"在UIButton上添加UIActivityIndicator及设置大小","dateModified":"2017-10-18T20:08:50+08:00","datePublished":"2017-10-18T20:08:50+08:00","sameAs":null,"@type":"BlogPosting","author":{"@type":"Person","name":"CoderZeaho"},"image":null,"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://coderzeaho.github.io/images/so-simple-site-logo.png"},"name":"CoderZeaho"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="xpher" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  在uibutton上添加uiactivityindicator及设置大小">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/posts/">Archive</a></li><li><a href="/categories/">Categories</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/" class="site-logo" rel="home" title="xpher">
+        <img src="/images/so-simple-site-logo.png" class="site-logo-img animated fadeInDown" alt="xpher">
+      </a>
+    
+    
+      <h1 class="site-title animated fadeIn"><a href="/">xpher</a></h1>
+      <p class="site-description animated fadeIn" itemprop="description">enjoy life.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">在UIButton上添加UIActivityIndicator及设置大小
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/images/image-default-avatar.png" class="author-avatar u-photo" alt="CoderZeaho"><div class="author-info"><div class="author-name">
+        <em>by</em> <span class="p-name">CoderZeaho</span>
+      </div>
+
+<span class="read-time">~1 min read</span>
+
+    <time class="page-date dt-published" datetime="2017-10-18T20:08:50+08:00"><a class="u-url" href="">October 18, 2017</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#objective-c" title="Pages filed under Objective-C">Objective-C</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮</p>
+
+<p><img src="http://upload-images.jianshu.io/upload_images/1712780-8f2fac0aff3ee5a1.gif?imageMogr2/auto-orient/strip" alt="" /></p>
+
+<p>直接上代码</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    //初始化按钮
+    UIButton *addFriendButton = [UIButton emptyFrameView];
+    addFriendButton.layer.masksToBounds = YES;
+    addFriendButton.layer.cornerRadius = 4.f;
+    addFriendButton.layer.borderWidth = 0.5f;
+    addFriendButton.layer.borderColor = [[UIColor green1Color] CGColor];
+    addFriendButton.titleLabel.font = [UIFont systemFontOfSize:12.1];
+    [addFriendButton setBackgroundColor:[UIColor white1Color]];
+    [addFriendButton setTitle:@"+好友" forState:UIControlStateNormal];
+    [addFriendButton addTarget:self action:@selector(didClickAddFriend:) forControlEvents:UIControlEventTouchUpInside];
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- (IBAction)didClickAddFriend:(id)sender{
+    //将文字置空
+    [self.addFriendButton setTitle:nil forState:UIControlStateNormal];
+    //初始化系统小菊花
+    UIActivityIndicatorView *addFriendActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.addFriendButton.bounds];
+    [addFriendActivityIndicator setUserInteractionEnabled:YES];
+    [addFriendActivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+    //改变小菊花颜色
+    [addFriendActivityIndicator setColor:[UIColor green1Color]];
+    //下文去解释下面这两行行代码的作用
+    //CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    //addFriendActivityIndicator.transform = transform;
+    [self.addFriendButton addSubview:addFriendActivityIndicator];
+    //小菊花开始转圈圈
+    [addFriendActivityIndicator startAnimating];
+    //用block实现加好友操作
+    if ([self addFriendHandler]) {
+        self.addFriendHandler();
+    }
+}
+</code></pre></div></div>
+
+<blockquote>
+  <p>UIActivityIndicatorView不能自定义大小,创建的UIActivityIndicatorView有三种style,这三种style有默认的大小,不能通过设置frame的方式来修改大小,那么上面代码中注释的那一行就起作用了
+需求:需要把显示的UIActivityIndicatorView显示得比预定义的小,实现的方式是通过transform来修改显示UIActivityIndicatorView的显示大小</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    addFriendActivityIndicator.transform = transform;
+</code></pre></div></div>
+
+
+        </div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> 各种数据类型的空值判断方法
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/swift/Swift-2.0-%E5%88%B0-Swift-3.0/">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Swift 2.0 到 Swift 3.0
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <div align="center" style="margin: 1em 0;">
+  <ins class="adsbygoogle"
+        style="display:block; border-bottom: initial;"
+        data-ad-client="ca-pub-7328585512091257"
+        data-ad-slot="3049671934"
+        data-ad-format="auto"></ins>
+  </div>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script> -->
+<div class="social-icons"><a class="social-icon" href="https://github.com/CoderZeaho"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2018 xpher. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </body>
+
+</html>

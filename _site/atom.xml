@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="https://coderzeaho.github.io/atom.xml" rel="self" type="application/atom+xml" /><link href="https://coderzeaho.github.io/" rel="alternate" type="text/html" /><updated>2018-04-16T17:55:53+08:00</updated><id>https://coderzeaho.github.io/</id><title type="html">xpher</title><subtitle>enjoy life.</subtitle><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><entry><title type="html">Sublime Text插件安装方法</title><link href="https://coderzeaho.github.io/plugins/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/" rel="alternate" type="text/html" title="Sublime Text插件安装方法" /><published>2017-12-09T20:08:50+08:00</published><updated>2017-12-09T20:08:50+08:00</updated><id>https://coderzeaho.github.io/plugins/Sublime%20Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95</id><content type="html" xml:base="https://coderzeaho.github.io/plugins/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/">&lt;h4 id=&quot;1通过-package-control-进行在线安装&quot;&gt;1.通过 Package Control 进行在线安装&lt;/h4&gt;
+&lt;p&gt;说在前面:Package Control 是一个用来进行在线安装插件的工具，在安装插件前需要先安装 Package Control。&lt;/p&gt;
+
+&lt;h6 id=&quot;安装-package-control&quot;&gt;安装 Package Control&lt;/h6&gt;
+&lt;p&gt;安装方法：通过快捷键 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + `&lt;/code&gt;打开  Console，在最底部把下面的代码复制粘贴过去后回车，然后稍微等待一段时间。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如果未能安装，或者报错可能是版本更新导致失效，此时可以进入官网复制粘贴官网提供代码。
+ &lt;a href=&quot;https://packagecontrol.io/installation#st3&quot;&gt;https://packagecontrol.io/installation#st3&lt;/a&gt; &lt;a href=&quot;https://packagecontrol.io/installation#st3&quot;&gt;传送门&lt;/a&gt;
+安装成功后重启Sublime Text即可。&lt;/p&gt;
+&lt;h6 id=&quot;通过-package-control-安装-sublime-插件&quot;&gt;通过 Package Control 安装 Sublime 插件&lt;/h6&gt;
+&lt;p&gt;使用方法：使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl + Shift + P &lt;/code&gt; 调出面板，然后输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;pci&lt;/code&gt; ，选中  &lt;code class=&quot;highlighter-rouge&quot;&gt;Package Control: Install Package&lt;/code&gt;，然后通过输入插件的名字找到插件并回车安装即可。&lt;/p&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">1.通过 Package Control 进行在线安装 说在前面:Package Control 是一个用来进行在线安装插件的工具，在安装插件前需要先安装 Package Control。</summary></entry><entry><title type="html">关于闭包的几种写法</title><link href="https://coderzeaho.github.io/swift/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/" rel="alternate" type="text/html" title="关于闭包的几种写法" /><published>2017-11-26T20:08:50+08:00</published><updated>2017-11-26T20:08:50+08:00</updated><id>https://coderzeaho.github.io/swift/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95</id><content type="html" xml:base="https://coderzeaho.github.io/swift/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95/">&lt;h1 id=&quot;闭包&quot;&gt;闭包&lt;/h1&gt;
+&lt;p&gt;闭包是一个特殊的函数,经常用于回调&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//  定义闭包
+类型 : (形参) -&amp;gt; (返回值)
+
+//  闭包执行回调
+类型(值)
+
+//  闭包实现回调
+{
+    (形参) -&amp;gt; (返回值) in
+    //  执行代码
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;简单举个例子:在方法中定义闭包实现回调传值&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;File:WJKHttpTool.swift
+
+import Foundation
+
+class WJKHttpTool : NSObject {
+     //  MARK:定义闭包
+     func loadData(completion : (_ result : Bool) -&amp;gt; ()) -&amp;gt; () {
+        //  MARK:闭包执行回调
+        completion(true)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;File:WJKViewController.swift
+
+import UIKit
+
+class ViewController : UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let httpTool : WJKHttpTool = WJKHttpTool()
+        
+        //  MARK:闭包实现回调
+         httpTool.loadData (completion: { (result) -&amp;gt; () in
+             print(result)
+        })
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;尾随闭包:
+1.如果闭包是函数的最后一个参数,则可以将闭包写在()后面
+2.如果函数只有一个参数,并且这个参数是闭包,那么()可以不写&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;上述闭包则为尾随闭包则可以写成
+httpTool.loadData() { (result) -&amp;gt; () in
+    print(result)
+}
+
+当然开发中建议(包括代码中敲回车代码补全)写成
+httpTool.loadData { (result) -&amp;gt; () in
+    print(result)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h5 id=&quot;扩展&quot;&gt;扩展&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;如果闭包没有参数,没有返回值部分内容可以省略&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;如上述例子中没有返回值则可以写成
+httpTool.loadData (completion: { (result) in
+    print(result)
+})
+
+当然如果是尾随闭包则可以写成
+httpTool.loadData { (result) in
+    print(result)
+}
+//  所以上述写法就是最简写法(官方推荐写法)了
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;解决循环引用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;httpTool.loadData {[weak self] (result) in
+    print(result)
+    self?.view.backgroundColor = UIColor.white
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">闭包 闭包是一个特殊的函数,经常用于回调</summary></entry><entry><title type="html">Swift 2.0 到 Swift 3.0</title><link href="https://coderzeaho.github.io/swift/Swift-2.0-%E5%88%B0-Swift-3.0/" rel="alternate" type="text/html" title="Swift 2.0 到 Swift 3.0" /><published>2017-11-24T20:08:50+08:00</published><updated>2017-11-24T20:08:50+08:00</updated><id>https://coderzeaho.github.io/swift/Swift%202.0%20%E5%88%B0%20Swift%203.0</id><content type="html" xml:base="https://coderzeaho.github.io/swift/Swift-2.0-%E5%88%B0-Swift-3.0/">&lt;blockquote&gt;
+  &lt;p&gt;问: 报错:The “Swift Language Version” (SWIFT_VERSION) build setting must be set to a supported value for targets which use Swift. This setting can be set in the build settings editor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;解决办法:&lt;code class=&quot;highlighter-rouge&quot;&gt;TARGETS &amp;gt; Build Settings &amp;gt; Swift Language Version&lt;/code&gt;,如图设置成3.2及更高版本:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-8510c6afb1368f08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot; Swift Language Version&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;问:当应用程序运行起来,闪过启动页后便成了黑屏&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;创建工程后,AppDelegate中自动生成应用开始运行时会调用的方法&lt;/p&gt;
+
+&lt;h5 id=&quot;swift-20-如下&quot;&gt;Swift 2.0 如下:&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&amp;gt; Bool {}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;在Swift 3.0 中该方法发生变化,工程中会报出警告,如图:&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-0f5a6547cf928173.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;warning&quot; /&gt;然而修复警告后仍然不走此方法内部,Swift 3.0 创建工程后,AppDelegate中应用开始运行时调用的方法发生变化&lt;/p&gt;
+
+&lt;h5 id=&quot;swift-30-如下&quot;&gt;Swift 3.0 如下:&lt;/h5&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -&amp;gt; Bool {}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Swift 3.0 中应使用上述方法替换 Swift 2.0 中的方法&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PS:持续更新......&lt;/code&gt;&lt;/p&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">问: 报错:The “Swift Language Version” (SWIFT_VERSION) build setting must be set to a supported value for targets which use Swift. This setting can be set in the build settings editor.</summary></entry><entry><title type="html">在UIButton上添加UIActivityIndicator及设置大小</title><link href="https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/" rel="alternate" type="text/html" title="在UIButton上添加UIActivityIndicator及设置大小" /><published>2017-10-18T20:08:50+08:00</published><updated>2017-10-18T20:08:50+08:00</updated><id>https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F</id><content type="html" xml:base="https://coderzeaho.github.io/objective-c/%E5%9C%A8UIButton%E4%B8%8A%E6%B7%BB%E5%8A%A0UIActivityIndicator%E5%8F%8A%E8%AE%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F/">&lt;p&gt;开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-8f2fac0aff3ee5a1.gif?imageMogr2/auto-orient/strip&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;直接上代码&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    //初始化按钮
+    UIButton *addFriendButton = [UIButton emptyFrameView];
+    addFriendButton.layer.masksToBounds = YES;
+    addFriendButton.layer.cornerRadius = 4.f;
+    addFriendButton.layer.borderWidth = 0.5f;
+    addFriendButton.layer.borderColor = [[UIColor green1Color] CGColor];
+    addFriendButton.titleLabel.font = [UIFont systemFontOfSize:12.1];
+    [addFriendButton setBackgroundColor:[UIColor white1Color]];
+    [addFriendButton setTitle:@&quot;+好友&quot; forState:UIControlStateNormal];
+    [addFriendButton addTarget:self action:@selector(didClickAddFriend:) forControlEvents:UIControlEventTouchUpInside];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- (IBAction)didClickAddFriend:(id)sender{
+    //将文字置空
+    [self.addFriendButton setTitle:nil forState:UIControlStateNormal];
+    //初始化系统小菊花
+    UIActivityIndicatorView *addFriendActivityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.addFriendButton.bounds];
+    [addFriendActivityIndicator setUserInteractionEnabled:YES];
+    [addFriendActivityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+    //改变小菊花颜色
+    [addFriendActivityIndicator setColor:[UIColor green1Color]];
+    //下文去解释下面这两行行代码的作用
+    //CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    //addFriendActivityIndicator.transform = transform;
+    [self.addFriendButton addSubview:addFriendActivityIndicator];
+    //小菊花开始转圈圈
+    [addFriendActivityIndicator startAnimating];
+    //用block实现加好友操作
+    if ([self addFriendHandler]) {
+        self.addFriendHandler();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;UIActivityIndicatorView不能自定义大小,创建的UIActivityIndicatorView有三种style,这三种style有默认的大小,不能通过设置frame的方式来修改大小,那么上面代码中注释的那一行就起作用了
+需求:需要把显示的UIActivityIndicatorView显示得比预定义的小,实现的方式是通过transform来修改显示UIActivityIndicatorView的显示大小&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    CGAffineTransform transform = CGAffineTransformMakeScale(.7f, .7f);
+    addFriendActivityIndicator.transform = transform;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">开发中会遇到点击一个按钮,按钮上就多一个系统的小菊花,来示操作正在进行,例如下面的加好友按钮</summary></entry><entry><title type="html">各种数据类型的空值判断方法</title><link href="https://coderzeaho.github.io/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/" rel="alternate" type="text/html" title="各种数据类型的空值判断方法" /><published>2016-11-05T20:08:50+08:00</published><updated>2016-11-05T20:08:50+08:00</updated><id>https://coderzeaho.github.io/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD</id><content type="html" xml:base="https://coderzeaho.github.io/objective-c/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD/">&lt;p&gt;在开发中,请求数据会遇到返回为空的情况,比如得到&lt;null&gt;的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回&lt;/null&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; id result;
+//遇到返回&amp;lt;null&amp;gt;的情况
+ if ([result isEqual:[NSNull null]]) {
+     return;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对于对象类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//可以使用 !(非) 来判断
+if（!object） return;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSString类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSString *string;
+string == nil;
+//or 
+[string isEqualToString:@&quot;&quot;];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSNumber类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSNumber *number;
+number == nil;
+//or
+[number isEqualToNumber:@0];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSArray类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSArray *array;
+array == nil;
+//or
+[array count] = 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;对于类似于NSDictionary类型的数据进行空值判断&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSDictionary *dictionary;
+[dictionary isEqual:[NSNull null]];
+//or
+[dictionary count] = 0;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">在开发中,请求数据会遇到返回为空的情况,比如得到的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回 id result; //遇到返回&amp;lt;null&amp;gt;的情况 if ([result isEqual:[NSNull null]]) { return; } 对于对象类型的数据进行空值判断</summary></entry><entry><title type="html">NSDate与时间戳互相转换</title><link href="https://coderzeaho.github.io/objective-c/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" rel="alternate" type="text/html" title="NSDate与时间戳互相转换" /><published>2016-09-22T20:08:50+08:00</published><updated>2016-09-22T20:08:50+08:00</updated><id>https://coderzeaho.github.io/objective-c/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2</id><content type="html" xml:base="https://coderzeaho.github.io/objective-c/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/">&lt;blockquote&gt;
+  &lt;p&gt;NSString日期转换为时间戳：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//如格式为:### xxxx-xx-xx xx:xx:xx ### 我们应该怎样把NSString日期转换为时间戳呢
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;];
+NSDate *date = [formatter dateFromString:dateString];
+NSTimeInterval interval = [date timeIntervalSince1970];
+NSString *timeStamp = [NSString stringWithFormat:@&quot;%i&quot;, (int)interval];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@implementation&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;NSDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dateWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSDateFormatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDateFormatter&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dateFormat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dateFromString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.field_name = [[[infoDict formateObjectForKey:@&quot;field_name&quot;] dateWithFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;] timeIntervalSince1970];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;NSString时间戳转换为NSDate:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@&quot;yyyy年MM月dd日 HH时mm分ss秒&quot;];
+NSString *str = [NSString stringWithFormat:@&quot;%@&quot;,
+[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[timeStamp integerValue]]]];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">NSString日期转换为时间戳：</summary></entry><entry><title type="html">MAC下配置ZSH</title><link href="https://coderzeaho.github.io/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/" rel="alternate" type="text/html" title="MAC下配置ZSH" /><published>2016-08-24T20:08:50+08:00</published><updated>2016-08-24T20:08:50+08:00</updated><id>https://coderzeaho.github.io/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH</id><content type="html" xml:base="https://coderzeaho.github.io/zsh/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH/">&lt;p&gt;Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。&lt;/p&gt;
+
+&lt;p&gt;MAC下面的终端是神器，在实际开发中为开发者带来许多方便，而程序员看到不爽的Shell，就会自己重新写一套，慢慢形成了一些标准，常用的Shell有这么几种，sh、bash、csh等。&lt;/p&gt;
+
+&lt;p&gt;在 Linux 里执行这个命令和 MAC 略有不同，你会发现 Mac 多了一个 ZSH，也就是说 OS X 系统预装了个 ZSH，可惜的事ZSH不是很好用，需要配合一些插件和模板：oh-my-zsh&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-0d009c638e8b94eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;ZSH配合oh-my-zsh使用效果图&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;来吧，让我们一起来配置一下吧&lt;/p&gt;
+
+&lt;p&gt;1.打开终端，输入命令行，将bash切换为zsh&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chsh -s /bin/zsh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;直接用zsh会很蛋疼，因为zsh功能很强大但是太复杂，所以需要oh-my-zsh来将它简单化。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;2.输入命令行，下载oh-my-zsh&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//1)直接用git从github上面下载包
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//2) 备份已有的zshrc
+cp ~/.zshrc ~/.zshrc.orig
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//3)替换zshrc
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;3.重启终端，大功告成，就是这么简单&lt;/p&gt;
+
+&lt;p&gt;按照步骤安装完后，可以配置一些常用的命令的“别名”
+在根目录下输入以下命令&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi .zshrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;翻到最下面，输入”i”，vim编辑器插入状态，可以为常用命令起别名，例如：alias gs=’git status’，插入后”ESC”，输入”:wq”(双引号不敲 –”)，退出vim编辑器，重启终端或者输入以下命令立即生效&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source .zshrc.local
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/1712780-9e5568668755fa8c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;别名配置如图&quot; /&gt;
+这样就好了，快在ZSH下使用你短命令吧&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;附：简化git命令&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git config --global alias.&amp;lt;handle&amp;gt; &amp;lt;command&amp;gt;
+
+比如：git status 改成 git st，这样可以简化命令
+
+git config --global alias.st status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</summary></entry><entry><title type="html">数组元素和数组名作为函数参数</title><link href="https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" rel="alternate" type="text/html" title="数组元素和数组名作为函数参数" /><published>2016-03-09T20:08:50+08:00</published><updated>2016-03-09T20:08:50+08:00</updated><id>https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0</id><content type="html" xml:base="https://coderzeaho.github.io/c/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/">&lt;h3 id=&quot;数组用作函数参数有两种形式&quot;&gt;数组用作函数参数有两种形式：&lt;/h3&gt;
+&lt;p&gt;一种是把数组元素（下标变量）作为实参使用；&lt;/p&gt;
+
+&lt;p&gt;一种是把数组名作为函数的形参和实参使用。&lt;/p&gt;
+
+&lt;h4 id=&quot;1数组元素下标变量作为实参使用&quot;&gt;1、数组元素（下标变量）作为实参使用&lt;/h4&gt;
+&lt;p&gt;数组元素作为函数实参使用与普通变量是完全相同的，在发生函数调用时，把作为实参的数组元素的值传给形参，只是“拷贝”实参中的变量的值，传送给形参，实现单向的值传送
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/1712780-7604f5a89a0389f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;1712780-0c3e72461b50aec2.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2数组名作为函数参数&quot;&gt;2、数组名作为函数参数&lt;/h4&gt;
+&lt;p&gt;用数组名作为函数参数与用数组元素作实参有几点不同&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;用数组元素作函数参数不要求形参也必须是数组，但是用数组名作函数参数时，则要求形参和相对应的实参都是类型相同的数组&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在C语言中，数组名除作为变量的标识符之外，数组名还代表了该数组在内存中的起始地址，当数组名作函数参数时，实参与形参之间不是“值传递”，而是“地址传递”，实参数组名将该数组的其实地址传给形参数组，两个数组共享一段内存单元，编译系统不再为形参数组分配存储单元。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在变量做函数参数时，所进行的值传递是单向的。即只能从实参传向形参，不能从形参传回实参。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;3数组名作为函数参数注意事项&quot;&gt;3、数组名作为函数参数注意事项&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;形参数组和实参数组类型必须一致，否则出错&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在函数形参表中，允许不给出形参数组的长度，或用一个变量来表示数组元素的个数&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void xzh(int a[])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;或写为&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void xzh(int a[],int n)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;n的值由主调函数的实参进行传递&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;所有的地址都占8个字节&lt;/del&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;形参数组和实参数组长度可以不相同，因为在调用时，只传递首地址而不检查形参数组的长度。&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>CoderZeaho</name><email>zeaho_ace@foxmail.com</email></author><summary type="html">数组用作函数参数有两种形式： 一种是把数组元素（下标变量）作为实参使用；</summary></entry></feed>
