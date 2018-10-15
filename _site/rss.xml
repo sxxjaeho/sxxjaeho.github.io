@@ -5,9 +5,9 @@
     <description>一个努力成长的程序员</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 14 Oct 2018 22:02:54 +0800</pubDate>
-    <lastBuildDate>Sun, 14 Oct 2018 22:02:54 +0800</lastBuildDate>
-    <generator>Jekyll v3.6.2</generator>
+    <pubDate>Mon, 15 Oct 2018 15:37:45 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Oct 2018 15:37:45 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.4</generator>
     
       <item>
         <title>Sublime Text插件安装方法</title>
@@ -333,14 +333,14 @@ NSString *timeStamp = [NSString stringWithFormat:@&quot;%i&quot;, (int)interval]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@implementation&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;NSDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dateWithFormat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;NSDateFormatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSDateFormatter&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dateFormat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@implementation NSString (NSDate)
+- (NSDate *)dateWithFormat:(NSString *)format;{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = format;
     
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;formatter&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dateFromString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;@end&lt;/span&gt;
+    return [formatter dateFromString:self];
+}
+@end
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;self.field_name = [[[infoDict formateObjectForKey:@&quot;field_name&quot;] dateWithFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;] timeIntervalSince1970];
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;

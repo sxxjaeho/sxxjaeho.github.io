@@ -92,9 +92,9 @@ Author: Ray-Eldath
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
   <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
-    <!-- <div class="g-logo">
+    <div class="g-logo">
       <a href="/"></a>
-    </div> -->
+    </div>
     <i id="menu-toggle" class="iconfont icon-menu"></i>
     <nav class="g-nav">
         <ul>
@@ -146,14 +146,14 @@ NSString *timeStamp = [NSString stringWithFormat:@"%i", (int)interval];
 </code></pre></div></div>
 <p>如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@implementation</span> <span class="nc">NSString</span> <span class="p">(</span><span class="nl">NSDate</span><span class="p">)</span>
-<span class="k">-</span> <span class="p">(</span><span class="n">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="nf">dateWithFormat</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">format</span><span class="p">;{</span>
-    <span class="n">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDateFormatter</span> <span class="nf">new</span><span class="p">];</span>
-    <span class="n">formatter</span><span class="p">.</span><span class="n">dateFormat</span> <span class="o">=</span> <span class="n">format</span><span class="p">;</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@implementation NSString (NSDate)
+- (NSDate *)dateWithFormat:(NSString *)format;{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = format;
     
-    <span class="k">return</span> <span class="p">[</span><span class="n">formatter</span> <span class="nf">dateFromString</span><span class="p">:</span><span class="n">self</span><span class="p">];</span>
-<span class="p">}</span>
-<span class="k">@end</span>
+    return [formatter dateFromString:self];
+}
+@end
 </code></pre></div></div>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.field_name = [[[infoDict formateObjectForKey:@"field_name"] dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSince1970];
 </code></pre></div></div>
