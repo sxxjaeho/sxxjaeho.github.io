@@ -1,0 +1,36 @@
+I"�<blockquote>
+  <p>NSString日期转换为时间戳：</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//如格式为:### xxxx-xx-xx xx:xx:xx ### 我们应该怎样把NSString日期转换为时间戳呢
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+NSDate *date = [formatter dateFromString:dateString];
+NSTimeInterval interval = [date timeIntervalSince1970];
+NSString *timeStamp = [NSString stringWithFormat:@"%i", (int)interval];
+</code></pre></div></div>
+<p>如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@implementation NSString (NSDate)
+- (NSDate *)dateWithFormat:(NSString *)format;{
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = format;
+    
+    return [formatter dateFromString:self];
+}
+@end
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.field_name = [[[infoDict formateObjectForKey:@"field_name"] dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSince1970];
+</code></pre></div></div>
+
+<blockquote>
+  <p>NSString时间戳转换为NSDate:</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+[formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
+NSString *str = [NSString stringWithFormat:@"%@",
+[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[timeStamp integerValue]]]];
+</code></pre></div></div>
+
+:ET

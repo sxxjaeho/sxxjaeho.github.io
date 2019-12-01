@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通用链接（Universal Links）实现通过 App 分享的链接跳回 App - xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="通用链接（Universal Links）实现通过 App 分享的链接跳回 App">
+    <meta name="keywords"  content="iOS">
+    <!-- Open Graph -->
+    <meta property="og:title" content="通用链接（Universal Links）实现通过 App 分享的链接跳回 App - xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2019/09/25/%E9%80%9A%E7%94%A8%E9%93%BE%E6%8E%A5-Universal-Links-%E5%AE%9E%E7%8E%B0%E9%80%9A%E8%BF%87-App-%E5%88%86%E4%BA%AB%E7%9A%84%E9%93%BE%E6%8E%A5%E8%B7%B3%E5%9B%9E-App.html">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">首页</a></li>
+            
+            <li><a href="/tags.html">标签</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-seaOfClouds bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="http://localhost:4000/tags#iOS" class="post-tag">iOS</a>
+          
+        
+      </div>
+      <h1>通用链接（Universal Links）实现通过 App 分享的链接跳回 App</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
+        <time class="post-meta-item" datetime="19-09-25"><i class="iconfont icon-date"></i>25 Sep 2019</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <blockquote>
+  <p>QQ互联将于2019年12月1日进行Universal Links校验，请开发者及时更新适配。</p>
+</blockquote>
+
+<p><a href="https://wiki.connect.qq.com/qq互联将于2019年12月1日进行universal-links校验，请开发者及时更">https://wiki.connect.qq.com/qq互联将于2019年12月1日进行universal-links校验，请开发者及时更</a></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/1712780-aceb0e8284347eb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图1 QQ互联 wiki" /></p>
+
+<p>官方说明：
+当支持通用链接时，用户可以点击网站链接重定向到已安装的应用（无需通过Safari浏览器），如果未安装应用则打开该网站链接。</p>
+
+<h3 id="配置前准备">配置前准备：</h3>
+
+<p><code class="highlighter-rouge">配置前提：域名需要支持 HTTPS 连接</code></p>
+
+<h3 id="开始配置">开始配置：</h3>
+<ol>
+  <li>打开 <a href="https://developer.apple.com">https://developer.apple.com</a>，登录苹果开发者账号，开启要配置的<code class="highlighter-rouge">APP IDs</code>的<code class="highlighter-rouge">Associated Domains</code>服务 <strong>（开启服务后需要重新激活失效的Provisioning Profiles，并重新下载安装）</strong>。
+<img src="https://upload-images.jianshu.io/upload_images/1712780-6e6f462b941c0209.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图2 苹果开发者官网-Certificates, Identifiers &amp; Profiles-Identifiers-开启服务" /></li>
+</ol>
+
+<p>2.项目配置支持通用链接的域名（支持添加多个域名）
+格式：applinks:xxx.xxx.xx，例如：applinks:d.vibesix.cn。
+<img src="https://upload-images.jianshu.io/upload_images/1712780-1d34f842ecdae83b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图3 Capabilities-Associated Domains-添加需要支持的域名" /></p>
+
+<p>3.需要服务器支持，确认通用链接对应的App的身份，创建一个命名为<code class="highlighter-rouge">apple-app-site-association</code>文件（没有后缀名），并写入一下<code class="highlighter-rouge">JSON</code>格式数据，如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "&lt;App ID Prefix&gt;.&lt;Bundle ID&gt;",
+                "paths": [ "/open-app.html/*"]
+            }
+        ]
+    }
+}
+</code></pre></div></div>
+<p>然后将<code class="highlighter-rouge">apple-app-site-association</code>文件拷贝到该域名服务器的<code class="highlighter-rouge">.well-known</code>文件夹下面。</p>
+
+<p><strong>ps:<code class="highlighter-rouge">App ID Prefix</code>和<code class="highlighter-rouge">Bundle ID</code>可在<code class="highlighter-rouge">图1</code>蓝框部分获取到，<code class="highlighter-rouge">paths</code>是通用链接域名后面的路径，*代表任意路径</strong>。</p>
+
+<p>4.测试通用链接是否生效，进入<a href="https://search.developer.apple.com/appsearch-validation-tool">https://search.developer.apple.com/appsearch-validation-tool</a>
+进行验证。
+<img src="https://upload-images.jianshu.io/upload_images/1712780-1de86141da9bfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图4 验证通用链接是否生效" />
+然而我试过n+1次，无法验证成功，并报错：</p>
+
+<p><code class="highlighter-rouge">Could not extract required information for application links. Learn how to implement the recommended Universal Links.</code></p>
+
+<p><code class="highlighter-rouge">Error no apps associated with url</code></p>
+
+<p>果断放弃验证（后来发现这个过程可以忽略），然后试了网上的方法将通用链接粘贴到手机<code class="highlighter-rouge">备忘录</code>上，点击链接即可跳转到 App 里，如图：<img src="https://upload-images.jianshu.io/upload_images/1712780-0634046aefda436f.gif?imageMogr2/auto-orient/strip" alt="图5 备忘录验证通用链接是否生效" /></p>
+
+<p>5.进入应用，定位到指定功能模块。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray&lt;id&lt;UIUserActivityRestoring&gt;&gt; * _Nullable))restorationHandler {
+    if ([[userActivity activityType] isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        NSString *host = userActivity.webpageURL.host;
+        if ([host isEqualToString:@"d.vibesix.cn"]) {
+                // 跳转操作
+        }
+    }
+    return YES;
+}
+</code></pre></div></div>
+<hr />
+
+<h3 id="实现效果">实现效果：</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/1712780-9c955fc36bad853b.gif?imageMogr2/auto-orient/strip" alt="图6 手机安装通用链接指向的应用时" /></p>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/1712780-9400841bab7159cd.gif?imageMogr2/auto-orient/strip" alt="图7 手机没有安装通用链接指向的应用时" /></p>
+
+<h3 id="参考链接">参考链接：</h3>
+<ul>
+  <li><a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html">Apple-Support Universal Links</a></li>
+  <li><a href="https://www.jianshu.com/p/8e8840dcd54d">ios通用链接 UniversalLink在微信打开app</a></li>
+  <li><a href="https://yohunl.com/ios-universal-links-tong-yong-lian-jie/">iOS Universal Links(通用链接)</a></li>
+  <li><a href="https://www.jianshu.com/p/8ae3576b12b0">iOS 通用链接（UniversalLinks）+ 分享功能的一些看法</a></li>
+  <li><a href="https://www.jianshu.com/p/848158b70a57">通用链接(Universal Links)实践笔记</a></li>
+</ul>
+
+
+    </article>
+
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">xpher</div>
+      <div class="bio">
+        <p>iOS开发工程师，一个努力成长的程序员。</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/sxxjaeho" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                    <i class="iconfont icon-jianshu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//weibo.com/seozeaho" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//veryins.com/coder_zeaho" target="_blank">
+                    <i class="iconfont icon-instagram"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" class="read-next-link"></a>
+          <section>
+            <span>Sublime Text插件安装方法</span>
+            <p>1.通过 Package Control 进行在线安装说在前面:Package Control 是一个用来进行在线...</p>
+          </section>
+          
+          <div class="filter"></div>
+          <img src="https://i.loli.net/2018/10/14/5bc342b80b937.jpg" alt="">
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

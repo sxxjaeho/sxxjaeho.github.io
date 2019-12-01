@@ -1,0 +1,94 @@
+I"�	<h1 id="闭包">闭包</h1>
+<p>闭包是一个特殊的函数,经常用于回调</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//  定义闭包
+类型 : (形参) -&gt; (返回值)
+
+//  闭包执行回调
+类型(值)
+
+//  闭包实现回调
+{
+    (形参) -&gt; (返回值) in
+    //  执行代码
+}
+</code></pre></div></div>
+
+<p>简单举个例子:在方法中定义闭包实现回调传值</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKHttpTool.swift
+
+import Foundation
+
+class WJKHttpTool : NSObject {
+     //  MARK:定义闭包
+     func loadData(completion : (_ result : Bool) -&gt; ()) -&gt; () {
+        //  MARK:闭包执行回调
+        completion(true)
+    }
+}
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKViewController.swift
+
+import UIKit
+
+class ViewController : UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let httpTool : WJKHttpTool = WJKHttpTool()
+        
+        //  MARK:闭包实现回调
+         httpTool.loadData (completion: { (result) -&gt; () in
+             print(result)
+        })
+}
+</code></pre></div></div>
+
+<p>尾随闭包:
+1.如果闭包是函数的最后一个参数,则可以将闭包写在()后面
+2.如果函数只有一个参数,并且这个参数是闭包,那么()可以不写</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>上述闭包则为尾随闭包则可以写成
+httpTool.loadData() { (result) -&gt; () in
+    print(result)
+}
+
+当然开发中建议(包括代码中敲回车代码补全)写成
+httpTool.loadData { (result) -&gt; () in
+    print(result)
+}
+</code></pre></div></div>
+
+<hr />
+
+<h5 id="扩展">扩展</h5>
+<ul>
+  <li>如果闭包没有参数,没有返回值部分内容可以省略</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>如上述例子中没有返回值则可以写成
+httpTool.loadData (completion: { (result) in
+    print(result)
+})
+
+当然如果是尾随闭包则可以写成
+httpTool.loadData { (result) in
+    print(result)
+}
+//  所以上述写法就是最简写法(官方推荐写法)了
+</code></pre></div></div>
+
+<ul>
+  <li>解决循环引用</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>httpTool.loadData {[weak self] (result) in
+    print(result)
+    self?.view.backgroundColor = UIColor.white
+}
+</code></pre></div></div>
+
+:ET
