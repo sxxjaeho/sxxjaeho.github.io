@@ -1,0 +1,33 @@
+I"<p>看别人写的代码常常会困惑，因为代码中会有不同的声明属性的写法，一直不理解区别是什么，于是调研了一下，让我们看看三种声明属性的写法。</p>
+<blockquote>
+  <p>方式一：直接在 @interface 中的大括号中声明</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span><span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>声明的成员变量是只能在自己类内部使用的，而不能在类的外部使用</p>
+<blockquote>
+  <p>方式二：在 @interface 中声明，然后再在 @property 中声明</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">_str</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span> 
+<span class="err">@</span><span class="n">synthesize</span> <span class="n">str</span> <span class="o">=</span> <span class="n">_str</span><span class="p">;</span>
+</code></pre></div></div>
+<p>一种过时的声明变量的方式，Xcode 在早期 @systhesize 没有自动合成属性器之前，需要手写 getter 与 setter 方法，下划线从风格上表明这是类的内部变量，要是需要直接使用变量则需要使用 get 或者 set 的方式。
+在 Xcode 目前有了自动合成属性器后，编译器会自动帮我们生成一个以下划线开头的的实例变量，所以我们不必去同时声明属性与变量。 我们可以直接用 @property 的方式来声明一个成员属性，在 .m 文件中使不使用 @systhesize 都无所谓，Xcode 会自动帮你生成 getter 与 setter。</p>
+<blockquote>
+  <p>方式三：直接用 @property 声明</p>
+</blockquote>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span><span class="p">{</span>
+    <span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>可以在类的外部访问，在类的内部可以通过<code class="highlighter-rouge">下划线+变量名</code>或者<code class="highlighter-rouge">self.变量名</code>的方式来访问。</p>
+
+:ET

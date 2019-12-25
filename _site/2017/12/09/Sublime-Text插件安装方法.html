@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,7 +116,7 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#Plugins" class="post-tag">Plugins</a>
+            <a href="/tags.html#Plugins" class="post-tag">Plugins</a>
           
         
       </div>
@@ -142,7 +142,7 @@ Author: Ray-Eldath
 <h6 id="安装-package-control">安装 Package Control</h6>
 <p>安装方法：通过快捷键 <code class="highlighter-rouge">Ctrl + `</code>打开  Console，在最底部把下面的代码复制粘贴过去后回车，然后稍微等待一段时间。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="p">,</span><span class="n">os</span><span class="p">,</span><span class="n">hashlib</span><span class="p">;</span> <span class="n">h</span> <span class="o">=</span> <span class="err">'</span><span class="mi">6</span><span class="n">f4c264a24d933ce70df5dedcf1dcaee</span><span class="err">'</span> <span class="o">+</span> <span class="err">'</span><span class="n">ebe013ee18cced0ef93d5f746d80ef60</span><span class="err">'</span><span class="p">;</span> <span class="n">pf</span> <span class="o">=</span> <span class="err">'</span><span class="kt">Package</span> <span class="kt">Control</span><span class="o">.</span><span class="n">sublime</span><span class="o">-</span><span class="n">package</span><span class="err">'</span><span class="p">;</span> <span class="n">ipp</span> <span class="o">=</span> <span class="n">sublime</span><span class="o">.</span><span class="nf">installed_packages_path</span><span class="p">();</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="nf">install_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="nf">build_opener</span><span class="p">(</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="kt">ProxyHandler</span><span class="p">())</span> <span class="p">);</span> <span class="n">by</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="nf">urlopen</span><span class="p">(</span> <span class="err">'</span><span class="nv">http</span><span class="p">:</span><span class="c1">//packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)</span>
 </code></pre></div></div>
 <p>如果未能安装，或者报错可能是版本更新导致失效，此时可以进入官网复制粘贴官网提供代码。<a href="https://packagecontrol.io/installation#st3">传送门</a>
 安装成功后重启Sublime Text即可。</p>
@@ -158,7 +158,7 @@ Author: Ray-Eldath
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -197,11 +197,14 @@ Author: Ray-Eldath
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2019/09/25/%E9%80%9A%E7%94%A8%E9%93%BE%E6%8E%A5-Universal-Links-%E5%AE%9E%E7%8E%B0%E9%80%9A%E8%BF%87-App-%E5%88%86%E4%BA%AB%E7%9A%84%E9%93%BE%E6%8E%A5%E8%B7%B3%E5%9B%9E-App.html" class="read-next-link"></a>
+        <a href="/2018/07/10/%E9%85%8D%E7%BD%AE-Jenkins-%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91.html" class="read-next-link"></a>
         <section>
-          <span>通用链接（Universal Links）实现通过 App 分享的链接跳回 App</span>
-          <p>  QQ互联将于2019年12月1日进行Universal Links校验，请开发者及时更新适配。</p>
+          <span>配置 Jenkins 遇到的坑</span>
+          <p>背景使用Jenkins是为了持续、自动构建项目，持续集成对整个开发团队的开发带来诸多好处，可以省去频繁的集成工作，...</p>
         </section>
+        
+        <div class="filter"></div>
+        <img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/imagesjenkins.jpg" alt="">
         
      </div>
       

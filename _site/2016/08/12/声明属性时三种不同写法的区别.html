@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swift 2.0 到 Swift 3.0 - xpher | 一个努力成长的程序员</title>
+    <title>声明属性时三种不同写法的区别 - xpher | 一个努力成长的程序员</title>
     <meta name="author"  content="xpher">
-    <meta name="description" content="Swift 2.0 到 Swift 3.0">
-    <meta name="keywords"  content="Swift">
+    <meta name="description" content="声明属性时三种不同写法的区别">
+    <meta name="keywords"  content="Objective-C">
     <!-- Open Graph -->
-    <meta property="og:title" content="Swift 2.0 到 Swift 3.0 - xpher | 一个努力成长的程序员">
+    <meta property="og:title" content="声明属性时三种不同写法的区别 - xpher | 一个努力成长的程序员">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html">
+    <meta property="og:url" content="http://localhost:4000/2016/08/12/%E5%A3%B0%E6%98%8E%E5%B1%9E%E6%80%A7%E6%97%B6%E4%B8%89%E7%A7%8D%E4%B8%8D%E5%90%8C%E5%86%99%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB.html">
     <meta property="og:description" content="一个努力成长的程序员">
     <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
     <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,14 +116,14 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#Swift" class="post-tag">Swift</a>
+            <a href="/tags.html#Objective-C" class="post-tag">Objective-C</a>
           
         
       </div>
-      <h1>Swift 2.0 到 Swift 3.0</h1>
+      <h1>声明属性时三种不同写法的区别</h1>
       <div class="post-meta">
         <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
-        <time class="post-meta-item" datetime="17-11-24"><i class="iconfont icon-date"></i>24 Nov 2017</time>
+        <time class="post-meta-item" datetime="16-08-12"><i class="iconfont icon-date"></i>12 Aug 2016</time>
       </div>
     </div>
     
@@ -133,34 +133,37 @@ Author: Ray-Eldath
     
 
     <article class="markdown-body">
-      <blockquote>
-  <p>问: 报错:The “Swift Language Version” (SWIFT_VERSION) build setting must be set to a supported value for targets which use Swift. This setting can be set in the build settings editor.</p>
-</blockquote>
-
-<p>解决办法:<code class="highlighter-rouge">TARGETS &gt; Build Settings &gt; Swift Language Version</code>,如图设置成3.2及更高版本:</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1712780-8510c6afb1368f08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Swift Language Version" /></p>
-
-<hr />
-
+      <p>看别人写的代码常常会困惑，因为代码中会有不同的声明属性的写法，一直不理解区别是什么，于是调研了一下，让我们看看三种声明属性的写法。</p>
 <blockquote>
-  <p>问:当应用程序运行起来,闪过启动页后便成了黑屏</p>
+  <p>方式一：直接在 @interface 中的大括号中声明</p>
 </blockquote>
 
-<p>创建工程后,AppDelegate中自动生成应用开始运行时会调用的方法</p>
-
-<h5 id="swift-20-如下">Swift 2.0 如下:</h5>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {}
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span><span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
-<p>在Swift 3.0 中该方法发生变化,工程中会报出警告,如图:<img src="http://upload-images.jianshu.io/upload_images/1712780-0f5a6547cf928173.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="warning" />然而修复警告后仍然不走此方法内部,Swift 3.0 创建工程后,AppDelegate中应用开始运行时调用的方法发生变化</p>
+<p>声明的成员变量是只能在自己类内部使用的，而不能在类的外部使用</p>
+<blockquote>
+  <p>方式二：在 @interface 中声明，然后再在 @property 中声明</p>
+</blockquote>
 
-<h5 id="swift-30-如下">Swift 3.0 如下:</h5>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -&gt; Bool {}
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">_str</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span> 
+<span class="err">@</span><span class="n">synthesize</span> <span class="n">str</span> <span class="o">=</span> <span class="n">_str</span><span class="p">;</span>
 </code></pre></div></div>
-<p>Swift 3.0 中应使用上述方法替换 Swift 2.0 中的方法</p>
+<p>一种过时的声明变量的方式，Xcode 在早期 @systhesize 没有自动合成属性器之前，需要手写 getter 与 setter 方法，下划线从风格上表明这是类的内部变量，要是需要直接使用变量则需要使用 get 或者 set 的方式。
+在 Xcode 目前有了自动合成属性器后，编译器会自动帮我们生成一个以下划线开头的的实例变量，所以我们不必去同时声明属性与变量。 我们可以直接用 @property 的方式来声明一个成员属性，在 .m 文件中使不使用 @systhesize 都无所谓，Xcode 会自动帮你生成 getter 与 setter。</p>
+<blockquote>
+  <p>方式三：直接用 @property 声明</p>
+</blockquote>
 
-<hr />
-<p><code class="highlighter-rouge">PS:持续更新......</code></p>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">@</span><span class="n">interface</span> <span class="n">MyTest</span> <span class="o">:</span> <span class="n">NSObject</span><span class="p">{</span>
+    <span class="err">@</span><span class="n">property</span> <span class="p">(</span><span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">str</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>可以在类的外部访问，在类的内部可以通过<code class="highlighter-rouge">下划线+变量名</code>或者<code class="highlighter-rouge">self.变量名</code>的方式来访问。</p>
 
 
     </article>
@@ -171,7 +174,7 @@ Author: Ray-Eldath
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -210,24 +213,21 @@ Author: Ray-Eldath
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2017/11/26/%E5%85%B3%E4%BA%8E%E9%97%AD%E5%8C%85%E7%9A%84%E5%87%A0%E7%A7%8D%E5%86%99%E6%B3%95.html" class="read-next-link"></a>
+        <a href="/2016/09/22/NSDate%E4%B8%8E%E6%97%B6%E9%97%B4%E6%88%B3%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2.html" class="read-next-link"></a>
         <section>
-          <span>关于闭包的几种写法</span>
-          <p>闭包闭包是一个特殊的函数,经常用于回调</p>
+          <span>NSDate与时间戳互相转换</span>
+          <p>  NSString日期转换为时间戳：</p>
         </section>
-        
-        <div class="filter"></div>
-        <img src="https://i.loli.net/2018/10/14/5bc342419fd21.jpg" alt="">
         
      </div>
       
 
       
       <div class="read-next-item">
-        <a href="/2016/11/05/%E5%90%84%E7%A7%8D%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.html" class="read-next-link"></a>
+        <a href="/2016/03/09/%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E5%92%8C%E6%95%B0%E7%BB%84%E5%90%8D%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0.html" class="read-next-link"></a>
           <section>
-            <span>各种数据类型的空值判断方法</span>
-            <p>在开发中,请求数据会遇到返回为空的情况,比如得到的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</p>
+            <span>数组元素和数组名作为函数参数</span>
+            <p>数组用作函数参数有两种形式：一种是把数组元素（下标变量）作为实参使用；</p>
           </section>
           
       </div>

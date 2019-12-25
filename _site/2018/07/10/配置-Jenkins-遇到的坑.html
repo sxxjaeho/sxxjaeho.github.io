@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配置 Jenkins 遇到的坑 - xpher | 一个努力成长的程序员</title>
+    <meta name="author"  content="xpher">
+    <meta name="description" content="配置 Jenkins 遇到的坑">
+    <meta name="keywords"  content="Jenkins">
+    <!-- Open Graph -->
+    <meta property="og:title" content="配置 Jenkins 遇到的坑 - xpher | 一个努力成长的程序员">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2018/07/10/%E9%85%8D%E7%BD%AE-Jenkins-%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91.html">
+    <meta property="og:description" content="一个努力成长的程序员">
+    <meta property="og:site_name" content="xpher | 一个努力成长的程序员">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-seaOfClouds bgcolor-default "
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="/tags.html#Jenkins" class="post-tag">Jenkins</a>
+          
+        
+      </div>
+      <h1>配置 Jenkins 遇到的坑</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>xpher</span>
+        <time class="post-meta-item" datetime="18-07-10"><i class="iconfont icon-date"></i>10 Jul 2018</time>
+      </div>
+    </div>
+    
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/imagesjenkins.jpg') center no-repeat; background-size: cover;"></div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h3 id="背景">背景</h3>
+<p>使用<code class="highlighter-rouge">Jenkins</code>是为了持续、自动构建项目，持续集成对整个开发团队的开发带来诸多好处，可以省去频繁的集成工作，整体缩短开发周期，推动整个开发，很大程度提高团队的工作效率。</p>
+
+<p>上家公司就是用<code class="highlighter-rouge">Jenkins</code>工具实现持续集成，但是之前是别的同事配置的，这两天在公司决定自己配置一下，结果遇到了很多坑，在此记录一下。</p>
+
+<h6 id="ps其实整个jenkins配置过程还是很简单的不是什么技术活网上详细的教程也有很多所以不多详细描述整个配置过程而是针对于我们公司的项目提出几个点并分享解决过程">ps：其实整个<code class="highlighter-rouge">Jenkins</code>配置过程还是很简单的，不是什么技术活，网上详细的教程也有很多，所以不多详细描述整个配置过程，而是针对于我们公司的项目提出几个点，并分享解决过程。</h6>
+
+<h3 id="一安装方式">一.安装方式</h3>
+<p>首先<code class="highlighter-rouge">Jenkins</code>安装方式网上就有很多声音，最开始配置作者是通过安装包（.dmg）的方式安装的，一切都很顺利，<code class="highlighter-rouge">http://localhost:8080</code>也直接打开了面板（如果输入地址打不开面板可能就是<code class="highlighter-rouge">Java</code>环境出现问题，可以检查一下，升级或者重新安装）。新建项目之后又遇到了一些问题，在下面会逐一提到。在工程都完美配置好的前提下（其实在这之前构建过 n 次，填了很多网上其他用户遇到的同样的问题，都比较好解决），开始构建，结果刚开始很顺利，进度条走着走着就报红了，打开控制台输出是以下内容：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">===</span> <span class="n">BUILD</span> <span class="n">TARGET</span> <span class="o">***</span> <span class="n">OF</span> <span class="n">PROJECT</span> <span class="o">****</span> <span class="n">WITH</span> <span class="n">CONFIGURATION</span> <span class="o">*****</span> <span class="o">===</span>
+
+<span class="n">Check</span> <span class="n">dependencies</span>
+<span class="n">Code</span> <span class="n">Signing</span> <span class="n">Error</span><span class="o">:</span> <span class="n">No</span> <span class="n">profile</span> <span class="k">for</span> <span class="n">team</span> <span class="err">'</span><span class="o">**********</span><span class="err">'</span> <span class="n">matching</span> <span class="err">'</span><span class="o">********</span><span class="err">'</span> <span class="n">found</span><span class="o">:</span>  <span class="n">Xcode</span> <span class="n">couldn</span><span class="err">'</span><span class="n">t</span> <span class="n">find</span> <span class="n">any</span> <span class="n">provisioning</span> <span class="n">profiles</span> <span class="n">matching</span> <span class="err">'</span><span class="o">*********</span><span class="err">*/</span><span class="o">********</span><span class="err">'</span><span class="p">.</span> <span class="n">Install</span> <span class="n">the</span> <span class="n">profile</span> <span class="p">(</span><span class="n">by</span> <span class="n">dragging</span> <span class="n">and</span> <span class="n">dropping</span> <span class="n">it</span> <span class="n">onto</span> <span class="n">Xcode</span><span class="err">'</span><span class="n">s</span> <span class="n">dock</span> <span class="n">item</span><span class="p">)</span> <span class="n">or</span> <span class="n">select</span> <span class="n">a</span> <span class="n">different</span> <span class="n">one</span> <span class="n">in</span> <span class="n">the</span> <span class="n">General</span> <span class="n">tab</span> <span class="n">of</span> <span class="n">the</span> <span class="n">target</span> <span class="n">editor</span><span class="p">.</span>
+<span class="n">Code</span> <span class="n">Signing</span> <span class="n">Error</span><span class="o">:</span> <span class="n">Code</span> <span class="n">signing</span> <span class="n">is</span> <span class="n">required</span> <span class="k">for</span> <span class="n">product</span> <span class="n">type</span> <span class="err">'</span><span class="n">Application</span><span class="err">'</span> <span class="n">in</span> <span class="n">SDK</span> <span class="err">'</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">.</span><span class="mi">1</span><span class="err">'</span>
+<span class="n">Code</span> <span class="n">Signing</span> <span class="n">Error</span><span class="o">:</span> <span class="n">Code</span> <span class="n">signing</span> <span class="n">is</span> <span class="n">required</span> <span class="k">for</span> <span class="n">product</span> <span class="n">type</span> <span class="err">'</span><span class="n">Application</span><span class="err">'</span> <span class="n">in</span> <span class="n">SDK</span> <span class="err">'</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">.</span><span class="mi">1</span><span class="err">'</span>
+<span class="n">Code</span> <span class="n">Signing</span> <span class="n">Error</span><span class="o">:</span> <span class="n">Code</span> <span class="n">signing</span> <span class="n">is</span> <span class="n">required</span> <span class="k">for</span> <span class="n">product</span> <span class="n">type</span> <span class="err">'</span><span class="n">Application</span><span class="err">'</span> <span class="n">in</span> <span class="n">SDK</span> <span class="err">'</span><span class="n">iOS</span> <span class="mi">11</span><span class="p">.</span><span class="mi">1</span><span class="err">'</span>
+
+<span class="o">**</span> <span class="n">ARCHIVE</span> <span class="n">FAILED</span> <span class="o">**</span>
+</code></pre></div></div>
+<p>这是作者遇到的第一个大坑，网上同样的问题也很多，很多人提出解决方法就是将<code class="highlighter-rouge">/Users/apple/Library/MobileDevice</code>下描述文件的文件夹整体移动到<code class="highlighter-rouge">/User/Shared/Jenkins/Library/MobileDevice</code>下，结果作者试了并没有什么用，然后又查了很多资料都没有解决这个问题，直到看到一个博客说通过安装包的方式存在这样的问题（修改<code class="highlighter-rouge">Jenkins</code>主目录），作者就推翻了安装包安装的方式，用<code class="highlighter-rouge">homebrew</code>进行安装，然后安装完配置<code class="highlighter-rouge">Jenkins</code>后，在面板里添加了工程，然后构建，不幸的是同样的问题并没有得到解决。</p>
+
+<p>其实作者这里出现这个问题的根本原因就是<code class="highlighter-rouge">Team ID</code>写错了，这个问题就让人很头大了，我这里一直没有发现我填的是证书后面的那串数字，这个操作就是被无良博主带歪了，<code class="highlighter-rouge">Team ID</code>应该登录开发者账号去查看，如图：
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-ae41da1cb3f4e010.png" alt="Team ID" /></p>
+
+<p>就这样我解决了这个大坑，后来发现拷贝描述文件到<code class="highlighter-rouge">Jenkins</code>用户目录是正确的操作。</p>
+
+<p>那么作者就这两种安装说一下自己比较直观的感受：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">homebrew</code>安装会比安装包安装效率要高一些，整个安装过程不用怕出现配置问题，包括卸载的时候会更方便。</li>
+  <li>安装包安装会再系统生成一个<code class="highlighter-rouge">Jenkins</code>用户，<code class="highlighter-rouge">homebrew</code>安装则不会。</li>
+  <li>两者主目录路径会不同，</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">homebrew</span><span class="err">安装主路径为</span><span class="o">:</span>
+<span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Home</span>
+</code></pre></div></div>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">安装包安装主路径为：</span>
+<span class="o">~/</span><span class="p">.</span><span class="n">jenkins</span><span class="o">/</span><span class="n">Home</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="highlighter-rouge">homebrew</code>安装开机后手动启动 Jenkins 服务，安装包安装开机后自动启动服务。当然<code class="highlighter-rouge">homebrew</code>也可以通过命令行设置成开机自动启动服务。</li>
+  <li>其他方面，比如创建任务及整个配置过程两种安装方式安装后都是一样的，出现报错不用质疑安装方式有问题。</li>
+</ul>
+
+<h3 id="二其他报错">二.其他报错</h3>
+<p>当然配置过程还有很多问题，比如：</p>
+<h4 id="1">1)</h4>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xcodebuild</span><span class="p">[</span><span class="mi">33781</span><span class="o">:</span><span class="mi">175258</span><span class="p">]</span> <span class="p">[</span><span class="n">MT</span><span class="p">]</span> <span class="n">IDEDistribution</span><span class="o">:</span> <span class="n">Step</span> <span class="n">failed</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">IDEDistributionSigningAssetsStep</span><span class="o">:</span> <span class="mh">0x7fd7dafe7ec0</span><span class="o">&gt;:</span> <span class="n">Error</span> <span class="n">Domain</span><span class="o">=</span><span class="n">IDEDistributionSigningAssetStepErrorDomain</span> <span class="n">Code</span><span class="o">=</span><span class="mi">0</span> <span class="s">"Locating signing assets failed."</span> <span class="n">UserInfo</span><span class="o">=</span><span class="p">{</span><span class="n">NSLocalizedDescription</span><span class="o">=</span><span class="n">Locating</span> <span class="n">signing</span> <span class="n">assets</span> <span class="n">failed</span><span class="p">.,</span> <span class="n">IDEDistributionSigningAssetStepUnderlyingErrors</span><span class="o">=</span><span class="p">(</span>
+    <span class="s">"Error Domain=IDEProvisioningErrorDomain Code=9 </span><span class="se">\"\"</span><span class="s">***.app</span><span class="se">\"</span><span class="s"> requires a provisioning profile with the Push Notifications feature.</span><span class="se">\"</span><span class="s"> UserInfo={NSLocalizedDescription=</span><span class="se">\"</span><span class="s">***.app</span><span class="se">\"</span><span class="s"> requires a provisioning profile with the Push Notifications feature., NSLocalizedRecoverySuggestion=Add a profile to the </span><span class="se">\"</span><span class="s">provisioningProfiles</span><span class="se">\"</span><span class="s"> dictionary in your Export Options property list.}"</span>
+<span class="p">)}</span>
+<span class="n">error</span><span class="o">:</span> <span class="n">exportArchive</span><span class="o">:</span> <span class="s">"***.app"</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">provisioning</span> <span class="n">profile</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Push</span> <span class="n">Notifications</span> <span class="n">feature</span><span class="p">.</span>
+
+<span class="n">Error</span> <span class="n">Domain</span><span class="o">=</span><span class="n">IDEProvisioningErrorDomain</span> <span class="n">Code</span><span class="o">=</span><span class="mi">9</span> <span class="s">""</span><span class="o">***</span><span class="p">.</span><span class="n">app</span><span class="s">" requires a provisioning profile with the Push Notifications feature."</span> <span class="n">UserInfo</span><span class="o">=</span><span class="p">{</span><span class="n">NSLocalizedDescription</span><span class="o">=</span><span class="s">"***.app"</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">provisioning</span> <span class="n">profile</span> <span class="n">with</span> <span class="n">the</span> <span class="n">Push</span> <span class="n">Notifications</span> <span class="n">feature</span><span class="p">.,</span> <span class="n">NSLocalizedRecoverySuggestion</span><span class="o">=</span><span class="n">Add</span> <span class="n">a</span> <span class="n">profile</span> <span class="n">to</span> <span class="n">the</span> <span class="s">"provisioningProfiles"</span> <span class="n">dictionary</span> <span class="n">in</span> <span class="n">your</span> <span class="n">Export</span> <span class="n">Options</span> <span class="n">property</span> <span class="n">list</span><span class="p">.}</span>
+
+<span class="o">**</span> <span class="n">EXPORT</span> <span class="n">FAILED</span> <span class="o">**</span>
+</code></pre></div></div>
+<p>问题定位之后了解到<code class="highlighter-rouge">Xcode</code>版本在<code class="highlighter-rouge">9</code>以上可能在面板中用<code class="highlighter-rouge">Xcode</code>插件构建会导致这样的问题，导致原因可能是没有权限访问钥匙串的内容，提供解决方案是放弃<code class="highlighter-rouge">Xcode</code>插件，通过“执行 shell”运行脚本完成项目构建，如下：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">security</span> <span class="n">unlock</span><span class="o">-</span><span class="n">keychain</span> <span class="o">-</span><span class="n">p</span> <span class="err">开机密码（登录钥匙串密码）</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="err">用户名</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Keychains</span><span class="o">/</span><span class="n">login</span><span class="p">.</span><span class="n">keychain</span>
+<span class="n">xcodebuild</span> <span class="n">clean</span> <span class="o">-</span><span class="n">workspace</span> <span class="s">"/Users/Shared/Jenkins/Home/workspace/项目文件夹/项目/项目.xcworkspace"</span> <span class="o">-</span><span class="n">scheme</span> <span class="s">"默认scheme"</span> <span class="o">-</span><span class="n">configuration</span> <span class="s">"默认configuration"</span> <span class="o">-</span><span class="n">sdk</span> <span class="n">iphoneos11</span><span class="p">.</span><span class="mi">4</span>
+<span class="n">xcodebuild</span> <span class="o">-</span><span class="n">archivePath</span> <span class="s">"/Users/Shared/Jenkins/Home/workspace/项目文件夹/output/默认scheme/项目.xcarchive"</span> <span class="o">-</span><span class="n">workspace</span> <span class="s">"/Users/Shared/Jenkins/Home/workspace/项目文件夹/项目/项目.xcworkspace"</span> <span class="o">-</span><span class="n">sdk</span> <span class="n">iphoneos11</span><span class="p">.</span><span class="mi">4</span> <span class="o">-</span><span class="n">scheme</span> <span class="s">"默认scheme"</span> <span class="o">-</span><span class="n">configuration</span> <span class="s">"默认configuration"</span> <span class="n">archive</span>
+<span class="n">xcodebuild</span> <span class="o">-</span><span class="n">exportArchive</span> <span class="o">-</span><span class="n">archivePath</span> <span class="s">"/Users/Shared/Jenkins/Home/workspace/项目文件夹/output/默认scheme/项目.xcarchive"</span> <span class="o">-</span><span class="n">exportPath</span> <span class="s">"/Users/Shared/Jenkins/Home/workspace/项目文件夹/ipa/默认scheme"</span> <span class="o">-</span><span class="n">exportOptionsPlist</span> <span class="err">'</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Home</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="err">项目文件夹</span><span class="o">/</span><span class="n">ipa</span><span class="o">/</span><span class="err">默认</span><span class="n">scheme</span><span class="o">/</span><span class="n">ExportOptions</span><span class="p">.</span><span class="n">plist</span><span class="err">'</span> <span class="o">-</span><span class="n">allowProvisioningUpdates</span>
+</code></pre></div></div>
+<p>当然，只是为了实现简单的构建版本需求。</p>
+
+<p><strong><em>注意：</em></strong>
+<strong><em>exportOptionsPlist代表包含导出的ipa包的配置信息的文件，我们可以再构建之前先在<code class="highlighter-rouge">/Users/Shared/Jenkins/Home/workspace/项目文件夹/ipa/默认scheme</code>生成这个文件，如果不会生成这个文件可以手动打包，打包导出的文件夹会生成这个文件，可以直接拿来使用，同时这个文件里能看到<code class="highlighter-rouge">Team ID</code>。</em></strong></p>
+
+<h4 id="2">2)</h4>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">Xcode</span><span class="o">/</span><span class="n">DerivedData</span><span class="o">/</span><span class="err">项目</span><span class="o">-</span><span class="n">chghnxmyohlmkqalamhlgjkzcims</span><span class="o">/</span><span class="n">Build</span><span class="o">/</span><span class="n">Intermediates</span><span class="p">.</span><span class="n">noindex</span><span class="o">/</span><span class="n">ArchiveIntermediates</span><span class="o">/</span><span class="err">项目</span><span class="o">/</span><span class="n">InstallationBuildProductsLocation</span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="err">项目</span><span class="p">.</span><span class="n">app</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">AliyunVideoSDKPro</span><span class="p">.</span><span class="n">framework</span><span class="o">:</span> <span class="n">errSecInternalComponent</span>
+<span class="n">Command</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">codesign</span> <span class="n">failed</span> <span class="n">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
+
+<span class="o">**</span> <span class="n">ARCHIVE</span> <span class="n">FAILED</span> <span class="o">**</span>
+<span class="n">The</span> <span class="n">following</span> <span class="n">build</span> <span class="n">commands</span> <span class="n">failed</span><span class="o">:</span>
+	<span class="n">CodeSign</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">Xcode</span><span class="o">/</span><span class="n">DerivedData</span><span class="o">/</span><span class="err">项目</span><span class="o">-</span><span class="n">chghnxmyohlmkqalamhlgjkzcims</span><span class="o">/</span><span class="n">Build</span><span class="o">/</span><span class="n">Intermediates</span><span class="p">.</span><span class="n">noindex</span><span class="o">/</span><span class="n">ArchiveIntermediates</span><span class="o">/</span><span class="err">项目</span><span class="o">/</span><span class="n">InstallationBuildProductsLocation</span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="err">项目</span><span class="p">.</span><span class="n">app</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">AliThirdparty</span><span class="p">.</span><span class="n">framework</span>
+	<span class="n">CodeSign</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">Shared</span><span class="o">/</span><span class="n">Jenkins</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">Xcode</span><span class="o">/</span><span class="n">DerivedData</span><span class="o">/</span><span class="err">项目</span><span class="o">-</span><span class="n">chghnxmyohlmkqalamhlgjkzcims</span><span class="o">/</span><span class="n">Build</span><span class="o">/</span><span class="n">Intermediates</span><span class="p">.</span><span class="n">noindex</span><span class="o">/</span><span class="n">ArchiveIntermediates</span><span class="o">/</span><span class="err">项目</span><span class="o">/</span><span class="n">InstallationBuildProductsLocation</span><span class="o">/</span><span class="n">Applications</span><span class="o">/</span><span class="err">项目</span><span class="p">.</span><span class="n">app</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">AliyunPlayerSDK</span><span class="p">.</span><span class="n">framework</span>
+<span class="p">(</span><span class="mi">4</span> <span class="n">failures</span><span class="p">)</span>
+<span class="n">Build</span> <span class="n">step</span> <span class="err">'执行</span> <span class="n">shell</span><span class="err">'</span> <span class="n">marked</span> <span class="n">build</span> <span class="n">as</span> <span class="n">failure</span>
+<span class="n">Finished</span><span class="o">:</span> <span class="n">FAILURE</span>
+</code></pre></div></div>
+<p>一切都进行很顺利，就差最后一点点就<code class="highlighter-rouge">Archive</code>完了，到构建一些<code class="highlighter-rouge">.framework</code>时又报问题了，这个问题真的是无解，仿佛就作者遇到了这样的问题，也无从查证，实在是搞不明白<code class="highlighter-rouge">errSecInternalComponent</code>这是什么问题，又看到了很多博客做了很多飘逸的操作，结果也没有给我解决问题。后来我就回看往期的构建版本发现用脚本构建之前（<code class="highlighter-rouge">Xcode</code>插件构建）时到这步操作并没有报这个错而是继续构建，然后报了错误1)，然后我就又换回了脚本构建的方式，通过构建版本方式的切换我发现成功导出了<code class="highlighter-rouge">ipa</code>文件，就这样作者终于看到了:
+<code class="highlighter-rouge">** ARCHIVE SUCCEEDED **</code> <code class="highlighter-rouge">** EXPORT SUCCEEDED **</code>。
+本以为就这样结束了，作者就针对工程中多个<code class="highlighter-rouge">Scheme</code>创建了多个任务，用很诡异的切换构建方式都成功地完成自动化打包，然后关机下班。
+第二天一上班欣喜地点了“立即构建”，结果爆炸了，又报了这个错误，心态爆炸了，原来切换构建方式的方法只是解决了一时的问题。后来静下心来想问题出在哪儿，又上网上翻了翻，看到了
+<a href="http://www.socialhook.me/sh/programming/questions/24023639/xcode+command+usrbincodesign+failed+with+exit+code+1++errsecinternalcomponent">Xcode Command /usr/bin/codesign failed with exit code 1 : errSecInternalComponent</a>，下面有个回答点醒了我，就是脚本构建需要先执行<code class="highlighter-rouge">security unlock-keychain -p 开机密码（登录钥匙串密码） /Users/用户名/Library/Keychains/login.keychain</code>，将登录钥匙串打开，提供访问。之前用<code class="highlighter-rouge">Xcode</code>插件构建不会在这里报错是因为<code class="highlighter-rouge">Xcode</code>插件有个解锁的选项，如下：
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-d039bb055e873dec.png" alt="Unlock Keychain" /></p>
+
+<p>所以<code class="highlighter-rouge">Xcode</code>插件构建后再用脚本构建不会问题，并且构建成功，而且重启电脑后又会报这个问题。所以脚本构建需要先执行<code class="highlighter-rouge">security unlock-keychain -p 开机密码（登录钥匙串密码） /Users/用户名/Library/Keychains/login.keychain</code>。</p>
+
+<h4 id="3">3)</h4>
+
+<p>前一阵子公司也开发新版本，Jenkins 也被搁置了。结果前两天想打包发现 Jenkins 面板打不开了，定位了半天也没找到问题出在哪里，索性就直接在公司的新电脑上重新部署了一下 Jenkins，最后我把问题归咎于 macOS Mojave，哈哈。
+结果没开心多久，像之前一样配置工程，结果打包失败了，报错信息如下：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">error:</span> <span class="nl">exportArchive:</span> <span class="n">The</span> <span class="n">data</span> <span class="n">couldn</span><span class="err">’</span><span class="n">t</span> <span class="n">be</span> <span class="n">read</span> <span class="n">because</span> <span class="n">it</span> <span class="n">isn</span><span class="err">’</span><span class="n">t</span> <span class="n">in</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">format</span><span class="p">.</span>
+
+<span class="n">Error</span> <span class="n">Domain</span><span class="o">=</span><span class="n">NSCocoaErrorDomain</span> <span class="n">Code</span><span class="o">=</span><span class="mi">3840</span> <span class="s">"No value."</span> <span class="n">UserInfo</span><span class="o">=</span><span class="p">{</span><span class="n">NSDebugDescription</span><span class="o">=</span><span class="n">No</span> <span class="n">value</span><span class="p">.,</span> <span class="n">NSFilePath</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">v4</span><span class="o">/</span><span class="n">j6xwm71s0nl2hjkfr7kyxd_w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipatool</span><span class="o">-</span><span class="n">json</span><span class="o">-</span><span class="n">filepath</span><span class="o">-</span><span class="n">CcF4eM</span><span class="p">}</span>
+
+<span class="o">**</span> <span class="n">EXPORT</span> <span class="n">FAILED</span> <span class="o">**</span>
+</code></pre></div></div>
+<p>这个问题就是导出的<code class="highlighter-rouge">ExportOptions.plist</code>配置的值不对，解决这个问题最快的办法就是手动打个包，然后导出包的文件夹里也会有这个文件，拷贝到<code class="highlighter-rouge">workspace</code>对应的文件夹中即可，如下图：
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-643d15efcedeeb7f.png" alt="workspace" /></p>
+
+<ul>
+  <li>需要注意的是在选择<code class="highlighter-rouge">Development distribution options</code>时<code class="highlighter-rouge">App Thinning</code>一定要选择<code class="highlighter-rouge">None</code>，如下图：
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-2c1cd71aac454cb3.jpg" alt="Development distribution options" /></li>
+</ul>
+
+<p>这样打完包之后的<code class="highlighter-rouge">ExportOptions.plist</code>内容如下图：
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-6b512b093632b0b3.jpg" alt="ExportOptions.plist" /></p>
+
+<h4 id="4">4)</h4>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sh</span> <span class="o">-</span><span class="n">xe</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="n">v4</span><span class="o">/</span><span class="n">j6xwm71s0nl2hjkfr7kyxd_w0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">jenkins2815406958203751547</span><span class="p">.</span><span class="n">sh</span>
+<span class="o">+</span> <span class="n">xcodebuild</span> <span class="n">clean</span> <span class="o">-</span><span class="n">workspace</span> <span class="err">$'</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">apple</span><span class="o">/</span><span class="p">.</span><span class="n">jenkins</span><span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">xxx</span><span class="o">/</span><span class="n">xxx</span><span class="p">.</span><span class="n">xcworkspace</span><span class="err">'</span> <span class="o">-</span><span class="n">scheme</span> <span class="n">xxx</span> <span class="o">-</span><span class="n">configuration</span> <span class="n">xxx</span> <span class="o">-</span><span class="n">sdk</span> <span class="n">iphoneos11</span><span class="p">.</span><span class="mi">0</span>
+<span class="n">xcodebuild</span><span class="o">:</span> <span class="n">error</span><span class="o">:</span> <span class="n">SDK</span> <span class="s">"iphoneos11.0"</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">located</span><span class="p">.</span>
+</code></pre></div></div>
+<p>出现这个问题就在终端输入<code class="highlighter-rouge">xcodebuild -showsdks</code>查看电脑支持的 iOS SDKs 就好了。</p>
+
+<h4 id="5">5)</h4>
+
+<p>愤怒的管家：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">org</span><span class="p">.</span><span class="n">apache</span><span class="p">.</span><span class="n">commons</span><span class="p">.</span><span class="n">jelly</span><span class="p">.</span><span class="n">JellyTagException</span><span class="o">:</span> <span class="n">jar</span><span class="o">:</span><span class="n">file</span><span class="o">:/</span><span class="n">Users</span><span class="o">/</span><span class="n">apple</span><span class="o">/</span><span class="p">.</span><span class="n">jenkins</span><span class="o">/</span><span class="n">war</span><span class="o">/</span><span class="n">WEB</span><span class="o">-</span><span class="n">INF</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jenkins</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">151</span><span class="p">.</span><span class="n">jar</span><span class="o">!/</span><span class="n">hudson</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="n">UpdateCenter</span><span class="o">/</span><span class="n">CoreUpdateMonitor</span><span class="o">/</span><span class="n">message</span><span class="p">.</span><span class="n">jelly</span><span class="o">:</span><span class="mi">53</span><span class="o">:</span><span class="mi">20</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">j</span><span class="o">:</span><span class="n">otherwise</span><span class="o">&gt;</span> <span class="n">can</span><span class="err">'</span><span class="n">t</span> <span class="n">parse</span> <span class="n">argument</span> <span class="n">number</span><span class="o">:</span> <span class="n">changelog</span><span class="p">.</span><span class="n">url</span>
+</code></pre></div></div>
+
+<p><img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-6f3ddb383bf1b7d9.jpg" alt="愤怒的管家" /></p>
+
+<p>安装完<code class="highlighter-rouge">Jenkins</code>遇到这个报错久无法继续配置任务了，我是用<code class="highlighter-rouge">homebrew</code>安装后遇到这个问题的，在网上查了很多资料，感觉没有实质性的帮助，看官方日志及解决方案也没有解决这个问题，最后我根据路径找到了报错的<code class="highlighter-rouge">jar包</code>，然后去官网下载了<code class="highlighter-rouge">Generic Java package (.war)</code>，用新下的<code class="highlighter-rouge">jenkins.war</code>里的<code class="highlighter-rouge">jenkins-core-2.138.3</code>替换了报错的<code class="highlighter-rouge">jenkins-core-2.151.jar</code>，完美解决了这个问题。</p>
+
+<hr />
+
+<p>就这样经历了<code class="highlighter-rouge">99+</code>次构建，作者用生命集成好了<code class="highlighter-rouge">Jenkins</code>，实现了持续集成，再次声明不是什么技术活。
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-3ef1e9422336214c.png" alt="成功导出" /></p>
+
+
+    </article>
+
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">xpher</div>
+      <div class="bio">
+        <p>iOS开发工程师，一个努力成长的程序员。</p>
+      </div>
+      
+      <ul class="sns-links">
+        
+        <li>
+          <a href="//github.com/sxxjaeho" target="_blank">
+                    <i class="iconfont icon-github"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//www.jianshu.com/u/8763aac98cf7" target="_blank">
+                    <i class="iconfont icon-jianshu"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//weibo.com/seozeaho" target="_blank">
+                    <i class="iconfont icon-weibo"></i>
+                </a>
+        </li>
+        
+        <li>
+          <a href="//veryins.com/coder_zeaho" target="_blank">
+                    <i class="iconfont icon-instagram"></i>
+                </a>
+        </li>
+        
+      </ul>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2019/02/14/Learn-Git-Branching-%E6%80%BB%E7%BB%93.html" class="read-next-link"></a>
+        <section>
+          <span>Learn Git Branching 总结</span>
+          <p>Learn Git Branching 总结链接：https://learngitbranching.js.org</p>
+        </section>
+        
+        <div class="filter"></div>
+        <img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/imagesSnip20191225_1.png" alt="">
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2017/12/09/Sublime-Text%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.html" class="read-next-link"></a>
+          <section>
+            <span>Sublime Text插件安装方法</span>
+            <p>1.通过 Package Control 进行在线安装说在前面:Package Control 是一个用来进行在线...</p>
+          </section>
+          
+          <div class="filter"></div>
+          <img src="https://i.loli.net/2018/10/14/5bc342b80b937.jpg" alt="">
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>xpher | 一个努力成长的程序员 ©
+  
+  
+    2017
+    -
+  
+  2019
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,7 +116,7 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#Objective-C" class="post-tag">Objective-C</a>
+            <a href="/tags.html#Objective-C" class="post-tag">Objective-C</a>
           
         
       </div>
@@ -137,35 +137,35 @@ Author: Ray-Eldath
   <p>NSString日期转换为时间戳：</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//如格式为:### xxxx-xx-xx xx:xx:xx ### 我们应该怎样把NSString日期转换为时间戳呢
-NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-[formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-NSDate *date = [formatter dateFromString:dateString];
-NSTimeInterval interval = [date timeIntervalSince1970];
-NSString *timeStamp = [NSString stringWithFormat:@"%i", (int)interval];
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//如格式为:### xxxx-xx-xx xx:xx:xx ### 我们应该怎样把NSString日期转换为时间戳呢</span>
+<span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="kt">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="kd">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">setDateFormat</span><span class="p">:</span><span class="s">@"yyyy-MM-dd HH:mm:ss"</span><span class="p">];</span>
+<span class="kt">NSDate</span> <span class="o">*</span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">formatter</span> <span class="nv">dateFromString</span><span class="p">:</span><span class="n">dateString</span><span class="p">];</span>
+<span class="kt">NSTimeInterval</span> <span class="n">interval</span> <span class="o">=</span> <span class="p">[</span><span class="n">date</span> <span class="n">timeIntervalSince1970</span><span class="p">];</span>
+<span class="kt">NSString</span> <span class="o">*</span><span class="n">timeStamp</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSString</span> <span class="nv">stringWithFormat</span><span class="p">:</span><span class="s">@"%i"</span><span class="p">,</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span><span class="n">interval</span><span class="p">];</span>
 </code></pre></div></div>
 <p>如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@implementation NSString (NSDate)
-- (NSDate *)dateWithFormat:(NSString *)format;{
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.dateFormat = format;
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@implementation</span> <span class="kt">NSString</span> <span class="p">(</span><span class="kt">NSDate</span><span class="p">)</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="nv">dateWithFormat</span><span class="p">:(</span><span class="kt">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">format</span><span class="p">;{</span>
+    <span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSDateFormatter</span> <span class="k">new</span><span class="p">];</span>
+    <span class="n">formatter</span><span class="o">.</span><span class="n">dateFormat</span> <span class="o">=</span> <span class="n">format</span><span class="p">;</span>
     
-    return [formatter dateFromString:self];
-}
-@end
+    <span class="k">return</span> <span class="p">[</span><span class="n">formatter</span> <span class="nv">dateFromString</span><span class="p">:</span><span class="k">self</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kd">@end</span>
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>self.field_name = [[[infoDict formateObjectForKey:@"field_name"] dateWithFormat:@"yyyy-MM-dd HH:mm:ss"] timeIntervalSince1970];
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">infoDict</span> <span class="nv">formateObjectForKey</span><span class="p">:</span><span class="s">@"field_name"</span><span class="p">]</span> <span class="nv">dateWithFormat</span><span class="p">:</span><span class="s">@"yyyy-MM-dd HH:mm:ss"</span><span class="p">]</span> <span class="n">timeIntervalSince1970</span><span class="p">];</span>
 </code></pre></div></div>
 
 <blockquote>
   <p>NSString时间戳转换为NSDate:</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-[formatter setDateFormat:@"yyyy年MM月dd日 HH时mm分ss秒"];
-NSString *str = [NSString stringWithFormat:@"%@",
-[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[timeStamp integerValue]]]];
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="kt">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="kd">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">setDateFormat</span><span class="p">:</span><span class="s">@"yyyy年MM月dd日 HH时mm分ss秒"</span><span class="p">];</span>
+<span class="kt">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSString</span> <span class="nv">stringWithFormat</span><span class="p">:</span><span class="s">@"%@"</span><span class="p">,</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">stringFromDate</span><span class="p">:[</span><span class="kt">NSDate</span> <span class="nv">dateWithTimeIntervalSince1970</span><span class="p">:[</span><span class="n">timeStamp</span> <span class="n">integerValue</span><span class="p">]]]];</span>
 </code></pre></div></div>
 
 
@@ -177,7 +177,7 @@ NSString *str = [NSString stringWithFormat:@"%@",
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -227,14 +227,11 @@ NSString *str = [NSString stringWithFormat:@"%@",
 
       
       <div class="read-next-item">
-        <a href="/2016/08/24/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH.html" class="read-next-link"></a>
+        <a href="/2016/08/12/%E5%A3%B0%E6%98%8E%E5%B1%9E%E6%80%A7%E6%97%B6%E4%B8%89%E7%A7%8D%E4%B8%8D%E5%90%8C%E5%86%99%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB.html" class="read-next-link"></a>
           <section>
-            <span>MAC下配置ZSH</span>
-            <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把...</p>
+            <span>声明属性时三种不同写法的区别</span>
+            <p>看别人写的代码常常会困惑，因为代码中会有不同的声明属性的写法，一直不理解区别是什么，于是调研了一下，让我们看看三种...</p>
           </section>
-          
-          <div class="filter"></div>
-          <img src="https://i.loli.net/2018/10/12/5bc03f507cf03.png" alt="">
           
       </div>
       

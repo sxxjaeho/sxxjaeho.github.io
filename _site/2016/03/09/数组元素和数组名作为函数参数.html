@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,7 +116,7 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#C%E8%AF%AD%E8%A8%80" class="post-tag">C语言</a>
+            <a href="/tags.html#C%E8%AF%AD%E8%A8%80" class="post-tag">C语言</a>
           
         
       </div>
@@ -140,7 +140,7 @@ Author: Ray-Eldath
 
 <h4 id="1数组元素下标变量作为实参使用">1、数组元素（下标变量）作为实参使用</h4>
 <p>数组元素作为函数实参使用与普通变量是完全相同的，在发生函数调用时，把作为实参的数组元素的值传给形参，只是“拷贝”实参中的变量的值，传送给形参，实现单向的值传送
-<img src="https://upload-images.jianshu.io/upload_images/1712780-7604f5a89a0389f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1712780-0c3e72461b50aec2.png" /></p>
+<img src="https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images1712780-7604f5a89a0389f2.png" alt="1712780-0c3e72461b50aec2.png" /></p>
 
 <h4 id="2数组名作为函数参数">2、数组名作为函数参数</h4>
 <p>用数组名作为函数参数与用数组元素作实参有几点不同</p>
@@ -167,11 +167,11 @@ Author: Ray-Eldath
   </li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void xzh(int a[])
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">xzh</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[])</span>
 </code></pre></div></div>
 <p>或写为</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void xzh(int a[],int n)
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">xzh</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>n的值由主调函数的实参进行传递</p>
@@ -191,7 +191,7 @@ Author: Ray-Eldath
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -230,14 +230,11 @@ Author: Ray-Eldath
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2016/08/24/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH.html" class="read-next-link"></a>
+        <a href="/2016/08/12/%E5%A3%B0%E6%98%8E%E5%B1%9E%E6%80%A7%E6%97%B6%E4%B8%89%E7%A7%8D%E4%B8%8D%E5%90%8C%E5%86%99%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB.html" class="read-next-link"></a>
         <section>
-          <span>MAC下配置ZSH</span>
-          <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把...</p>
+          <span>声明属性时三种不同写法的区别</span>
+          <p>看别人写的代码常常会困惑，因为代码中会有不同的声明属性的写法，一直不理解区别是什么，于是调研了一下，让我们看看三种...</p>
         </section>
-        
-        <div class="filter"></div>
-        <img src="https://i.loli.net/2018/10/12/5bc03f507cf03.png" alt="">
         
      </div>
       

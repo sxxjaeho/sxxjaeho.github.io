@@ -1,0 +1,249 @@
+I"�U<h1 id="learn-git-branching-总结">Learn Git Branching 总结</h1>
+<p>链接：https://learngitbranching.js.org</p>
+
+<h2 id="主要"><strong>主要</strong></h2>
+<h4 id="基础篇">基础篇</h4>
+<h6 id="1git-commit">1.Git Commit</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">commit</span>
+</code></pre></div></div>
+<h6 id="2git-branch">2.Git Branch</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">branch</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">bugFix</span>
+</code></pre></div></div>
+<h6 id="3git-merge">3.Git Merge</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">bugFix</span>
+</code></pre></div></div>
+<h6 id="4git-rebase">4.Git Rebase</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span>
+</code></pre></div></div>
+<h4 id="高级篇">高级篇</h4>
+<h6 id="1分离-head">1.分离 Head</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="n">c4</span>
+</code></pre></div></div>
+<p>2.相对引用 ^
+最优解：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="n">bugFix</span><span class="o">^</span>
+</code></pre></div></div>
+<p>其他解：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">chekcout</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">HEAD</span><span class="o">^</span>
+</code></pre></div></div>
+<h6 id="3相对引用2-">3.相对引用2 ~</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">master</span> <span class="n">c6</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">bugFix</span> <span class="n">c0</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">c1</span>
+</code></pre></div></div>
+<h6 id="4撤销变更">4.撤销变更</h6>
+<p>reset: (local)
+<code class="highlighter-rouge">git reset</code>通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。<code class="highlighter-rouge">git reset</code> 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。</p>
+
+<p>revert: (pushed)
+虽然在你的本地分支中使用<code class="highlighter-rouge">git reset</code>很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！为了撤销更改并分享给别人，我们需要使用<code class="highlighter-rouge">git revert</code>。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span><span class="o">^</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">pushed</span>
+<span class="n">git</span> <span class="n">revert</span> <span class="n">HEAD</span>
+</code></pre></div></div>
+
+<h4 id="移动提交记录">移动提交记录</h4>
+<h5 id="1git-cherry-pick">1.Git Cherry-pick</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">c3</span> <span class="n">c5</span> <span class="n">c7</span>
+</code></pre></div></div>
+<h5 id="2交互式-rebase">2.交互式 rebase</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">4</span>
+</code></pre></div></div>
+
+<h4 id="移动提交记录-1">移动提交记录</h4>
+<h5 id="1只提取一个提交记录">1.只提取一个提交记录</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">3</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">master</span> <span class="n">bugFix</span>
+</code></pre></div></div>
+<p>或</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">master</span> <span class="n">bugFix</span>
+</code></pre></div></div>
+<h5 id="2提交的技巧-1">2.提交的技巧 #1</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span> <span class="err">#修改</span><span class="n">C2</span><span class="err">和</span><span class="n">C3</span><span class="err">的顺序</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="o">-</span><span class="n">i</span> <span class="n">HEAD</span><span class="o">~</span><span class="mi">2</span> <span class="err">#修改</span><span class="n">C3</span><span class="err">'和</span><span class="n">C2</span><span class="err">''顺序</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">master</span>
+</code></pre></div></div>
+<h5 id="3提交的技巧-2">3.提交的技巧 #2</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">newImage</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">amend</span>
+<span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">caption</span>
+</code></pre></div></div>
+<h5 id="4git-tag">4.Git Tag</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">tag</span> <span class="n">v0</span> <span class="n">c1</span>
+<span class="n">git</span> <span class="n">tag</span> <span class="n">v1</span> <span class="n">c2</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">c2</span>
+</code></pre></div></div>
+<h5 id="5git-describe">5.Git Describe</h5>
+<p>由于标签在代码库中起着“锚点”的作用，Git 还为此专门设计了一个命令用来描述离你最近的锚点（也就是标签），它就是 <code class="highlighter-rouge">git describe</code>！</p>
+
+<p>Git Describe 能帮你在提交历史中移动了多次以后找到方向；当你用 <code class="highlighter-rouge">git bisect</code>（一个查找产生 Bug 的提交记录的指令）找到某个提交记录时，或者是当你坐在你那刚刚度假回来的同事的电脑前时， 可能会用到这个命令。</p>
+
+<p>git describe 的语法是：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">describe</span> <span class="o">&lt;</span><span class="n">ref</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>&lt;ref&gt; 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会以你目前所检出的位置（HEAD）。</p>
+
+<p>它输出的结果是这样的：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">tag</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">numCommits</span><span class="o">&gt;</span><span class="n">_g</span><span class="o">&lt;</span><span class="n">hash</span><span class="o">&gt;</span>
+</code></pre></div></div>
+<p>tag 表示的是离 ref 最近的标签， numCommits 是表示这个 ref 与 tag 相差有多少个提交记录， hash 表示的是你所给定的 ref 所表示的提交记录哈希值的前几位。</p>
+
+<p>当 ref 提交记录上有某个标签时，则只输出标签名称。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span>
+</code></pre></div></div>
+
+<h4 id="高级话题">高级话题</h4>
+<h5 id="1多次-rebase">1.多次 Rebase</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">rebase</span> <span class="n">master</span> <span class="n">bugFix</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">bugFix</span> <span class="n">side</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">side</span> <span class="n">another</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">master</span> <span class="n">another</span>
+</code></pre></div></div>
+<h5 id="2两个父节点">2.两个父节点</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">branch</span> <span class="n">bugWork</span> <span class="n">HEAD</span><span class="o">~^</span><span class="mi">2</span><span class="o">~</span>
+</code></pre></div></div>
+<h5 id="3纠缠不清的分支">3.纠缠不清的分支</h5>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="n">one</span>
+<span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">c4</span> <span class="n">c3</span> <span class="n">c2</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">two</span>
+<span class="n">git</span> <span class="n">cherry</span><span class="o">-</span><span class="n">pick</span> <span class="n">c5</span> <span class="n">c4</span> <span class="n">c3</span> <span class="n">c2</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">three</span> <span class="n">c2</span>
+</code></pre></div></div>
+
+<p><strong>整理到最后发现可以看答案</strong>
+……</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">show</span> <span class="n">solution</span>
+</code></pre></div></div>
+<p><strong>还是非常合理的</strong>
+……
+<strong>我还要不要继续整理了</strong>
+……
+<strong>再过一遍吧</strong>
+……</p>
+
+<hr />
+
+<h2 id="远程"><strong>远程</strong></h2>
+
+<h4 id="push--pull--git-远程仓库">Push &amp; Pull —— Git 远程仓库！</h4>
+<h6 id="1git-clone">1.Git Clone</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span>
+</code></pre></div></div>
+<h6 id="2远程分支">2.远程分支</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">o</span><span class="o">/</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">commit</span>
+</code></pre></div></div>
+<h6 id="3git-fetch">3.Git Fetch</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">fetch</span>
+</code></pre></div></div>
+<h6 id="4git-pull">4.Git Pull</h6>
+<p><code class="highlighter-rouge">git pull</code>就是<code class="highlighter-rouge">git fetch</code>和<code class="highlighter-rouge">git merge &lt;just-fetched-branch&gt;</code>的缩写。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span>
+</code></pre></div></div>
+<h6 id="5模拟团队合作">5.模拟团队合作</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span>
+<span class="n">git</span> <span class="n">fakeTeamwork</span> <span class="mi">2</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">pull</span>
+</code></pre></div></div>
+<h6 id="6git-push">6.Git Push</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">commit</span> 
+<span class="n">git</span> <span class="n">push</span>
+</code></pre></div></div>
+<h6 id="7偏离的提交历史">7.偏离的提交历史</h6>
+<p><code class="highlighter-rouge">git pull --rebase</code>就是<code class="highlighter-rouge">fetch</code>和<code class="highlighter-rouge">rebase</code>的简写。</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">clone</span>
+<span class="n">git</span> <span class="n">fakeTeamwork</span> <span class="mi">1</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+<span class="n">git</span> <span class="n">push</span>
+</code></pre></div></div>
+
+<h4 id="关于-origin-和它的周边--git-远程仓库高级操作">关于 origin 和它的周边 —— Git 远程仓库高级操作</h4>
+<h6 id="1推送主分支">1.推送主分支</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">fetch</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">o</span><span class="o">/</span><span class="n">master</span> <span class="n">side1</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">side1</span> <span class="n">side2</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">side2</span> <span class="n">side3</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">side3</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">push</span>
+</code></pre></div></div>
+<h6 id="2合并远程仓库">2.合并远程仓库</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">side1</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">side2</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">side3</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+</code></pre></div></div>
+<h6 id="3远程追踪">3.远程追踪</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">side</span> <span class="n">o</span><span class="o">/</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+<span class="n">git</span> <span class="n">push</span>
+</code></pre></div></div>
+<h6 id="3远程追踪-1">3.远程追踪</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">side</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">commit</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">rebase</span>
+<span class="n">git</span> <span class="n">push</span>
+</code></pre></div></div>
+<h6 id="4git-push的参数">4.Git Push的参数</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">foo</span>
+</code></pre></div></div>
+<h6 id="5git-push的参数-2">5.Git Push的参数 2</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">foo</span><span class="o">:</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">master</span><span class="o">^:</span><span class="n">foo</span>
+</code></pre></div></div>
+<h6 id="6git-fetch的参数">6.Git Fetch的参数</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span> <span class="n">master</span><span class="o">^:</span><span class="n">foo</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">origin</span> <span class="n">foo</span><span class="o">:</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">foo</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">master</span>
+</code></pre></div></div>
+<p>或</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span><span class="o">^:</span><span class="n">foo</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">foo</span><span class="o">:</span><span class="n">master</span>
+<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">f</span> <span class="n">foo</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">foo</span>
+</code></pre></div></div>
+<h6 id="7没有source的source">7.没有source的source</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="o">:</span><span class="n">bar</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">:</span><span class="n">foo</span>
+</code></pre></div></div>
+<h6 id="8git-pull的参数">8.Git Pull的参数</h6>
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">bar</span><span class="o">:</span><span class="n">foo</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">origin</span> <span class="n">master</span><span class="o">:</span><span class="n">side</span>
+</code></pre></div></div>
+
+:ET

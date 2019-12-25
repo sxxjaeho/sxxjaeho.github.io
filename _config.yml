@@ -4,13 +4,20 @@ description: '一个努力成长的程序员'
 keyword: '小屁孩儿, 徐在虎, iOS, iOS开发, Objective-C, Swift, 开发, 开发工程师'
 url: 'http://xpher.me' # your host
 
-# if you don't need baseurl, you should leave this value blank.
+# when build blog on server, if you don't need baseurl, you should leave this value blank.
+# 在服务器上建站时，如果你不需要子域名，请将这一格留空
+# if you're using GitHub Pages, set baseurl to your blog's .
+# 如果你在使用 GitHub Pages, 请将 baseurl 设置为你的网址的子域名
+# for example, if your site is "kaeyleo.github.io", then this url should leave blank.
+# 例如，当你的域名是 "kaeyleo.github.io"  时，这个 url 需要留空
+# but if your created a repo named "myblog", and the site is "kaeyleo.github.io/myblog", change baseurl to '/myblog'
+# 但是，如果你创建了一个叫 "myblog" 的网站，此时网址会变成 "kaeyleo.github.io/myblog" ，这时再将 baseurl 设置为 '/myblog'
 baseurl: ''
 
 # Navigation links
 nav:
-  首页: '/'
-  标签: '/tags.html'
+  home: '/'
+  tags: '/tags.html'
 
 # Footer
 footer:
@@ -18,7 +25,7 @@ footer:
 
 # Author 配置博主信息
 author: 'xpher'
-nickname: '徐在虎'
+nickname: 'sxxjaeho'
 bio: 'iOS开发工程师，一个努力成长的程序员。'
 avatar: '/assets/img/profile.png'
 
@@ -26,12 +33,12 @@ avatar: '/assets/img/profile.png'
 search: true
 
 # Night mode
-nightMode: false
+nightMode: true
 
 # Comments 评论功能
 comments:
   disqus: false
-  disqus_url: 'https://liaokeyu.disqus.com/embed.js'
+  disqus_url: ''
 
 # MathJax 公式支持 by Ray-Eldath
 mathjax: true

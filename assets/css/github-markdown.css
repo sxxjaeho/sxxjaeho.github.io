@@ -8,37 +8,37 @@
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
   color: #24292e;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
 }
 
 .markdown-body .pl-c {
-  color: #6a737d;
+  color: #969896;
 }
 
 .markdown-body .pl-c1,
 .markdown-body .pl-s .pl-v {
-  color: #005cc5;
+  color: #0086b3;
 }
 
 .markdown-body .pl-e,
 .markdown-body .pl-en {
-  color: #6f42c1;
+  color: #795da3;
 }
 
 .markdown-body .pl-smi,
 .markdown-body .pl-s .pl-s1 {
-  color: #24292e;
+  color: #333;
 }
 
 .markdown-body .pl-ent {
-  color: #22863a;
+  color: #63a35c;
 }
 
 .markdown-body .pl-k {
-  color: #d73a49;
+  color: #a71d5d;
 }
 
 .markdown-body .pl-s,
@@ -48,26 +48,26 @@
 .markdown-body .pl-sr .pl-cce,
 .markdown-body .pl-sr .pl-sre,
 .markdown-body .pl-sr .pl-sra {
-  color: #032f62;
+  color: #183691;
 }
 
 .markdown-body .pl-v,
 .markdown-body .pl-smw {
-  color: #e36209;
+  color: #ed6a43;
 }
 
 .markdown-body .pl-bu {
-  color: #b31d28;
+  color: #b52a1d;
 }
 
 .markdown-body .pl-ii {
-  color: #fafbfc;
-  background-color: #b31d28;
+  color: #f8f8f8;
+  background-color: #b52a1d;
 }
 
 .markdown-body .pl-c2 {
-  color: #fafbfc;
-  background-color: #d73a49;
+  color: #f8f8f8;
+  background-color: #b52a1d;
 }
 
 .markdown-body .pl-c2::before {
@@ -76,66 +76,74 @@
 
 .markdown-body .pl-sr .pl-cce {
   font-weight: bold;
-  color: #22863a;
+  color: #63a35c;
 }
 
 .markdown-body .pl-ml {
-  color: #735c0f;
+  color: #693a17;
 }
 
 .markdown-body .pl-mh,
 .markdown-body .pl-mh .pl-en,
 .markdown-body .pl-ms {
   font-weight: bold;
-  color: #005cc5;
+  color: #1d3e81;
+}
+
+.markdown-body .pl-mq {
+  color: #008080;
 }
 
 .markdown-body .pl-mi {
   font-style: italic;
-  color: #24292e;
+  color: #333;
 }
 
 .markdown-body .pl-mb {
   font-weight: bold;
-  color: #24292e;
+  color: #333;
 }
 
 .markdown-body .pl-md {
-  color: #b31d28;
-  background-color: #ffeef0;
+  color: #bd2c00;
+  background-color: #ffecec;
 }
 
 .markdown-body .pl-mi1 {
-  color: #22863a;
-  background-color: #f0fff4;
+  color: #55a532;
+  background-color: #eaffea;
 }
 
 .markdown-body .pl-mc {
-  color: #e36209;
-  background-color: #ffebda;
+  color: #ef9700;
+  background-color: #ffe3b4;
 }
 
 .markdown-body .pl-mi2 {
-  color: #f6f8fa;
-  background-color: #005cc5;
+  color: #d8d8d8;
+  background-color: #808080;
 }
 
 .markdown-body .pl-mdr {
   font-weight: bold;
-  color: #6f42c1;
+  color: #795da3;
+}
+
+.markdown-body .pl-mo {
+  color: #1d3e81;
 }
 
 .markdown-body .pl-ba {
-  color: #586069;
+  color: #595e62;
 }
 
 .markdown-body .pl-sg {
-  color: #959da5;
+  color: #c0c0c0;
 }
 
 .markdown-body .pl-corl {
   text-decoration: underline;
-  color: #032f62;
+  color: #183691;
 }
 
 .markdown-body .octicon {
@@ -146,6 +154,7 @@
 
 .markdown-body a {
   background-color: transparent;
+  -webkit-text-decoration-skip: objects;
 }
 
 .markdown-body a:active,
@@ -167,7 +176,22 @@
 }
 
 .markdown-body img {
+  display: block;
   border-style: none;
+  margin: 0 auto;
+}
+
+.markdown-body img {
+  display: block;
+  margin: 32px auto;
+  max-width: 100%;
+  background-color: #fff;
+  border-style: none;
+  box-sizing: content-box;
+}
+
+.markdown-body svg:not(:root) {
+  overflow: hidden;
 }
 
 .markdown-body code,
@@ -208,11 +232,7 @@
 }
 
 .markdown-body a {
-  color: #0366d6;
-  text-decoration: none;
-}
-
-.markdown-body a:hover {
+  color: inherit;
   text-decoration: underline;
 }
 
@@ -241,8 +261,10 @@
 }
 
 .markdown-body table {
+  margin: 32px auto;
   border-spacing: 0;
   border-collapse: collapse;
+  overflow: auto;
 }
 
 .markdown-body td,
@@ -256,16 +278,20 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 .markdown-body h1 {
-  font-size: 32px;
+  margin-top: 36px;
+  font-size: 28px;
   font-weight: 600;
 }
 
 .markdown-body h2 {
+  margin-top: 28px;
   font-size: 24px;
   font-weight: 600;
 }
@@ -291,12 +317,21 @@
 }
 
 .markdown-body p {
-  margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  font-size: 17px;
+  line-height: 1.8;
+  text-align: justify;
 }
 
 .markdown-body blockquote {
   margin: 0;
+}
+
+.markdown-body ul {
+  list-style: disc;
+}
+.markdown-body ul ul {
+  list-style: circle;
 }
 
 .markdown-body ul,
@@ -318,20 +353,12 @@
   list-style-type: lower-alpha;
 }
 
+li p:nth-child(2) {
+  margin-bottom: 16px !important;
+}
+
 .markdown-body dd {
   margin-left: 0;
-}
-
-.markdown-body code {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 12px;
-}
-
-.markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 12px;
 }
 
 .markdown-body .octicon {
@@ -401,12 +428,10 @@
   outline: none;
 }
 
-.markdown-body p,
 .markdown-body blockquote,
 .markdown-body ul,
 .markdown-body ol,
 .markdown-body dl,
-.markdown-body table,
 .markdown-body pre {
   margin-top: 0;
   margin-bottom: 16px;
@@ -448,18 +473,6 @@
   box-shadow: inset 0 -1px 0 #959da5;
 }
 
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-
 .markdown-body h1 .octicon-link,
 .markdown-body h2 .octicon-link,
 .markdown-body h3 .octicon-link,
@@ -490,15 +503,11 @@
 }
 
 .markdown-body h1 {
-  padding-bottom: 0.3em;
   font-size: 2em;
-  border-bottom: 1px solid #eaecef;
 }
 
 .markdown-body h2 {
-  padding-bottom: 0.3em;
   font-size: 1.5em;
-  border-bottom: 1px solid #eaecef;
 }
 
 .markdown-body h3 {
@@ -531,10 +540,6 @@
   margin-bottom: 0;
 }
 
-.markdown-body li {
-  word-wrap: break-all;
-}
-
 .markdown-body li>p {
   margin-top: 16px;
 }
@@ -560,12 +565,6 @@
   margin-bottom: 16px;
 }
 
-.markdown-body table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-}
-
 .markdown-body table th {
   font-weight: 600;
 }
@@ -585,72 +584,13 @@
   background-color: #f6f8fa;
 }
 
-.markdown-body img {
-  display: block;
-  border-style: none;
-  margin: 0 auto;
-}
-
-.markdown-body img {
-  display: block;
-  margin: 32px auto;
-  max-width: 100%;
-  background-color: #fff;
-  border-style: none;
-  box-sizing: content-box;
-}
-
-.markdown-body code {
+.markdown-body p code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   background-color: rgba(27,31,35,0.05);
   border-radius: 3px;
-}
-
-.markdown-body pre {
-  word-wrap: normal;
-}
-
-.markdown-body pre>code {
-  padding: 0;
-  margin: 0;
-  font-size: 100%;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
-}
-
-.markdown-body .highlight {
-  margin-bottom: 16px;
-}
-
-.markdown-body .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdown-body .highlight pre,
-.markdown-body pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #f6f8fa;
-  border-radius: 3px;
-}
-
-.markdown-body pre code {
-  display: inline;
-  max-width: auto;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0;
 }
 
 .markdown-body .full-commit .btn-outline:not(:disabled):hover {
@@ -665,11 +605,11 @@
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
-  background-color: #fafbfc;
-  border: solid 1px #d1d5da;
-  border-bottom-color: #c6cbd1;
+  background-color: #fcfcfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
   border-radius: 3px;
-  box-shadow: inset 0 -1px 0 #c6cbd1;
+  box-shadow: inset 0 -1px 0 #959da5;
 }
 
 .markdown-body :checked+.radio-label {

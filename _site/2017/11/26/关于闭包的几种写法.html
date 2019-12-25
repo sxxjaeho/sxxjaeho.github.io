@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,7 +116,7 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#Swift" class="post-tag">Swift</a>
+            <a href="/tags.html#Swift" class="post-tag">Swift</a>
           
         
       </div>
@@ -139,65 +139,65 @@ Author: Ray-Eldath
       <h1 id="闭包">闭包</h1>
 <p>闭包是一个特殊的函数,经常用于回调</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//  定义闭包
-类型 : (形参) -&gt; (返回值)
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//  定义闭包</span>
+<span class="nv">类型</span> <span class="p">:</span> <span class="p">(</span><span class="n">形参</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">返回值</span><span class="p">)</span>
 
-//  闭包执行回调
-类型(值)
+<span class="c1">//  闭包执行回调</span>
+<span class="nf">类型</span><span class="p">(</span><span class="n">值</span><span class="p">)</span>
 
-//  闭包实现回调
-{
-    (形参) -&gt; (返回值) in
-    //  执行代码
-}
+<span class="c1">//  闭包实现回调</span>
+<span class="p">{</span>
+    <span class="p">(</span><span class="n">形参</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">返回值</span><span class="p">)</span> <span class="k">in</span>
+    <span class="c1">//  执行代码</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>简单举个例子:在方法中定义闭包实现回调传值</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKHttpTool.swift
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">File</span><span class="p">:</span><span class="kt">WJKHttpTool</span><span class="o">.</span><span class="n">swift</span>
 
-import Foundation
+<span class="kd">import</span> <span class="kt">Foundation</span>
 
-class WJKHttpTool : NSObject {
-     //  MARK:定义闭包
-     func loadData(completion : (_ result : Bool) -&gt; ()) -&gt; () {
-        //  MARK:闭包执行回调
-        completion(true)
-    }
-}
+<span class="kd">class</span> <span class="kt">WJKHttpTool</span> <span class="p">:</span> <span class="kt">NSObject</span> <span class="p">{</span>
+     <span class="c1">//  MARK:定义闭包</span>
+     <span class="kd">func</span> <span class="nf">loadData</span><span class="p">(</span><span class="nv">completion</span> <span class="p">:</span> <span class="p">(</span><span class="n">_</span> <span class="nv">result</span> <span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//  MARK:闭包执行回调</span>
+        <span class="nf">completion</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File:WJKViewController.swift
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">File</span><span class="p">:</span><span class="kt">WJKViewController</span><span class="o">.</span><span class="n">swift</span>
 
-import UIKit
+<span class="kd">import</span> <span class="kt">UIKit</span>
 
-class ViewController : UIViewController {
+<span class="kd">class</span> <span class="kt">ViewController</span> <span class="p">:</span> <span class="kt">UIViewController</span> <span class="p">{</span>
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="o">.</span><span class="nf">viewDidLoad</span><span class="p">()</span>
         
-        let httpTool : WJKHttpTool = WJKHttpTool()
+        <span class="k">let</span> <span class="nv">httpTool</span> <span class="p">:</span> <span class="kt">WJKHttpTool</span> <span class="o">=</span> <span class="kt">WJKHttpTool</span><span class="p">()</span>
         
-        //  MARK:闭包实现回调
-         httpTool.loadData (completion: { (result) -&gt; () in
-             print(result)
-        })
-}
+        <span class="c1">//  MARK:闭包实现回调</span>
+         <span class="n">httpTool</span><span class="o">.</span><span class="nf">loadData</span> <span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="k">in</span>
+             <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="p">})</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>尾随闭包:
 1.如果闭包是函数的最后一个参数,则可以将闭包写在()后面
 2.如果函数只有一个参数,并且这个参数是闭包,那么()可以不写</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>上述闭包则为尾随闭包则可以写成
-httpTool.loadData() { (result) -&gt; () in
-    print(result)
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">上述闭包则为尾随闭包则可以写成</span>
+<span class="n">httpTool</span><span class="o">.</span><span class="nf">loadData</span><span class="p">()</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">}</span>
 
-当然开发中建议(包括代码中敲回车代码补全)写成
-httpTool.loadData { (result) -&gt; () in
-    print(result)
-}
+<span class="nf">当然开发中建议</span><span class="p">(</span><span class="n">包括代码中敲回车代码补全</span><span class="p">)</span><span class="n">写成</span>
+<span class="n">httpTool</span><span class="o">.</span><span class="n">loadData</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <hr />
@@ -207,26 +207,26 @@ httpTool.loadData { (result) -&gt; () in
   <li>如果闭包没有参数,没有返回值部分内容可以省略</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>如上述例子中没有返回值则可以写成
-httpTool.loadData (completion: { (result) in
-    print(result)
-})
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">如上述例子中没有返回值则可以写成</span>
+<span class="n">httpTool</span><span class="o">.</span><span class="nf">loadData</span> <span class="p">(</span><span class="nv">completion</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">})</span>
 
-当然如果是尾随闭包则可以写成
-httpTool.loadData { (result) in
-    print(result)
-}
-//  所以上述写法就是最简写法(官方推荐写法)了
+<span class="n">当然如果是尾随闭包则可以写成</span>
+<span class="n">httpTool</span><span class="o">.</span><span class="n">loadData</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">//  所以上述写法就是最简写法(官方推荐写法)了</span>
 </code></pre></div></div>
 
 <ul>
   <li>解决循环引用</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>httpTool.loadData {[weak self] (result) in
-    print(result)
-    self?.view.backgroundColor = UIColor.white
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">httpTool</span><span class="o">.</span><span class="n">loadData</span> <span class="p">{[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">view</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="n">white</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 
@@ -238,7 +238,7 @@ httpTool.loadData { (result) in
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -291,11 +291,14 @@ httpTool.loadData { (result) in
 
       
       <div class="read-next-item">
-        <a href="/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html" class="read-next-link"></a>
+        <a href="/2017/10/24/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH.html" class="read-next-link"></a>
           <section>
-            <span>Swift 2.0 到 Swift 3.0</span>
-            <p>  问: 报错:The “Swift Language Version” (SWIFT_VERSION) buil...</p>
+            <span>MAC下配置ZSH</span>
+            <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把...</p>
           </section>
+          
+          <div class="filter"></div>
+          <img src="https://i.loli.net/2018/10/12/5bc03f507cf03.png" alt="">
           
       </div>
       

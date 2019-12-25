@@ -1,0 +1,36 @@
+I"�<blockquote>
+  <p>NSString日期转换为时间戳：</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//如格式为:### xxxx-xx-xx xx:xx:xx ### 我们应该怎样把NSString日期转换为时间戳呢</span>
+<span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="kt">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="kd">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">setDateFormat</span><span class="p">:</span><span class="s">@"yyyy-MM-dd HH:mm:ss"</span><span class="p">];</span>
+<span class="kt">NSDate</span> <span class="o">*</span><span class="n">date</span> <span class="o">=</span> <span class="p">[</span><span class="n">formatter</span> <span class="nv">dateFromString</span><span class="p">:</span><span class="n">dateString</span><span class="p">];</span>
+<span class="kt">NSTimeInterval</span> <span class="n">interval</span> <span class="o">=</span> <span class="p">[</span><span class="n">date</span> <span class="n">timeIntervalSince1970</span><span class="p">];</span>
+<span class="kt">NSString</span> <span class="o">*</span><span class="n">timeStamp</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSString</span> <span class="nv">stringWithFormat</span><span class="p">:</span><span class="s">@"%i"</span><span class="p">,</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span><span class="n">interval</span><span class="p">];</span>
+</code></pre></div></div>
+<p>如果开发过程中后端返回上述格式的字符串,为NSString写个Category,方便初始化model,如下</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">@implementation</span> <span class="kt">NSString</span> <span class="p">(</span><span class="kt">NSDate</span><span class="p">)</span>
+<span class="o">-</span> <span class="p">(</span><span class="kt">NSDate</span> <span class="o">*</span><span class="p">)</span><span class="nv">dateWithFormat</span><span class="p">:(</span><span class="kt">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">format</span><span class="p">;{</span>
+    <span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSDateFormatter</span> <span class="k">new</span><span class="p">];</span>
+    <span class="n">formatter</span><span class="o">.</span><span class="n">dateFormat</span> <span class="o">=</span> <span class="n">format</span><span class="p">;</span>
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">formatter</span> <span class="nv">dateFromString</span><span class="p">:</span><span class="k">self</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="kd">@end</span>
+</code></pre></div></div>
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">self</span><span class="o">.</span><span class="n">field_name</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">infoDict</span> <span class="nv">formateObjectForKey</span><span class="p">:</span><span class="s">@"field_name"</span><span class="p">]</span> <span class="nv">dateWithFormat</span><span class="p">:</span><span class="s">@"yyyy-MM-dd HH:mm:ss"</span><span class="p">]</span> <span class="n">timeIntervalSince1970</span><span class="p">];</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>NSString时间戳转换为NSDate:</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="kt">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="kd">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">setDateFormat</span><span class="p">:</span><span class="s">@"yyyy年MM月dd日 HH时mm分ss秒"</span><span class="p">];</span>
+<span class="kt">NSString</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">[</span><span class="kt">NSString</span> <span class="nv">stringWithFormat</span><span class="p">:</span><span class="s">@"%@"</span><span class="p">,</span>
+<span class="p">[</span><span class="n">formatter</span> <span class="nv">stringFromDate</span><span class="p">:[</span><span class="kt">NSDate</span> <span class="nv">dateWithTimeIntervalSince1970</span><span class="p">:[</span><span class="n">timeStamp</span> <span class="n">integerValue</span><span class="p">]]]];</span>
+</code></pre></div></div>
+
+:ET

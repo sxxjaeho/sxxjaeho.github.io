@@ -91,7 +91,7 @@ Author: Ray-Eldath
   <!--[if lt IE 10]>
 <div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
 <![endif]-->
-  <input id="nm-switch" type="hidden" value="false"> <header class="g-header">
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
     <div class="g-logo">
       <a href="/"></a>
     </div>
@@ -99,9 +99,9 @@ Author: Ray-Eldath
     <nav class="g-nav">
         <ul>
             
-            <li><a href="/">首页</a></li>
+            <li><a href="/">home</a></li>
             
-            <li><a href="/tags.html">标签</a></li>
+            <li><a href="/tags.html">tags</a></li>
             
         </ul>
     </nav>
@@ -116,7 +116,7 @@ Author: Ray-Eldath
       <div class="post-tags">
         
           
-            <a href="http://localhost:4000/tags#Objective-C" class="post-tag">Objective-C</a>
+            <a href="/tags.html#Objective-C" class="post-tag">Objective-C</a>
           
         
       </div>
@@ -135,57 +135,57 @@ Author: Ray-Eldath
     <article class="markdown-body">
       <p>在开发中,请求数据会遇到返回为空的情况,比如得到<null>的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</null></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> id result;
-//遇到返回&lt;null&gt;的情况
- if ([result isEqual:[NSNull null]]) {
-     return;
-}
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">id</span> <span class="n">result</span><span class="p">;</span>
+<span class="c1">//遇到返回&lt;null&gt;的情况</span>
+ <span class="k">if</span> <span class="p">([</span><span class="n">result</span> <span class="nv">isEqual</span><span class="p">:[</span><span class="kt">NSNull</span> <span class="n">null</span><span class="p">]])</span> <span class="p">{</span>
+     <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div></div>
 <blockquote>
   <p>对于对象类型的数据进行空值判断</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//可以使用 !(非) 来判断
-if（!object） return;
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//可以使用 !(非) 来判断</span>
+<span class="k">if</span><span class="err">（</span><span class="o">!</span><span class="n">object</span><span class="err">）</span> <span class="k">return</span><span class="p">;</span>
 </code></pre></div></div>
 
 <blockquote>
   <p>对于类似于NSString类型的数据进行空值判断</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSString *string;
-string == nil;
-//or 
-[string isEqualToString:@""];
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSString</span> <span class="o">*</span><span class="n">string</span><span class="p">;</span>
+<span class="n">string</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or </span>
+<span class="p">[</span><span class="n">string</span> <span class="nv">isEqualToString</span><span class="p">:</span><span class="s">@""</span><span class="p">];</span>
 </code></pre></div></div>
 <blockquote>
   <p>对于类似于NSNumber类型的数据进行空值判断</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSNumber *number;
-number == nil;
-//or
-[number isEqualToNumber:@0];
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSNumber</span> <span class="o">*</span><span class="n">number</span><span class="p">;</span>
+<span class="n">number</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">number</span> <span class="nv">isEqualToNumber</span><span class="p">:</span><span class="err">@</span><span class="mi">0</span><span class="p">];</span>
 </code></pre></div></div>
 
 <blockquote>
   <p>对于类似于NSArray类型的数据进行空值判断</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSArray *array;
-array == nil;
-//or
-[array count] = 0;
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSArray</span> <span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="n">array</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">array</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </code></pre></div></div>
 
 <blockquote>
   <p>对于类似于NSDictionary类型的数据进行空值判断</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>NSDictionary *dictionary;
-[dictionary isEqual:[NSNull null]];
-//or
-[dictionary count] = 0;
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSDictionary</span> <span class="o">*</span><span class="n">dictionary</span><span class="p">;</span>
+<span class="p">[</span><span class="n">dictionary</span> <span class="nv">isEqual</span><span class="p">:[</span><span class="kt">NSNull</span> <span class="n">null</span><span class="p">]];</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">dictionary</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </code></pre></div></div>
 
 
@@ -197,7 +197,7 @@ array == nil;
   <section class="author-detail">
     <section class="post-footer-item author-card">
       <div class="avatar">
-        <img src="http://localhost:4000/assets/img/profile.png" alt="">
+        <img src="/assets/img/profile.png" alt="">
       </div>
       <div class="author-name" rel="author">xpher</div>
       <div class="bio">
@@ -236,11 +236,14 @@ array == nil;
     <section class="post-footer-item read-next">
       
       <div class="read-next-item">
-        <a href="/2017/11/24/Swift-2.0-%E5%88%B0-Swift-3.0.html" class="read-next-link"></a>
+        <a href="/2017/10/24/MAC%E4%B8%8B%E9%85%8D%E7%BD%AEZSH.html" class="read-next-link"></a>
         <section>
-          <span>Swift 2.0 到 Swift 3.0</span>
-          <p>  问: 报错:The “Swift Language Version” (SWIFT_VERSION) buil...</p>
+          <span>MAC下配置ZSH</span>
+          <p>Shell是Linux/Unix的一个外壳。它负责外界与Linux内核的交互，接收用户或其他应用程序的命令，然后把...</p>
         </section>
+        
+        <div class="filter"></div>
+        <img src="https://i.loli.net/2018/10/12/5bc03f507cf03.png" alt="">
         
      </div>
       

@@ -1,0 +1,56 @@
+I"Z<p>在开发中,请求数据会遇到返回为空的情况,比如得到<null>的情况,我们需要判断是否为空,不为空才封装数据模型,为空则直接返回</null></p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">id</span> <span class="n">result</span><span class="p">;</span>
+<span class="c1">//遇到返回&lt;null&gt;的情况</span>
+ <span class="k">if</span> <span class="p">([</span><span class="n">result</span> <span class="nv">isEqual</span><span class="p">:[</span><span class="kt">NSNull</span> <span class="n">null</span><span class="p">]])</span> <span class="p">{</span>
+     <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<blockquote>
+  <p>对于对象类型的数据进行空值判断</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//可以使用 !(非) 来判断</span>
+<span class="k">if</span><span class="err">（</span><span class="o">!</span><span class="n">object</span><span class="err">）</span> <span class="k">return</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>对于类似于NSString类型的数据进行空值判断</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSString</span> <span class="o">*</span><span class="n">string</span><span class="p">;</span>
+<span class="n">string</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or </span>
+<span class="p">[</span><span class="n">string</span> <span class="nv">isEqualToString</span><span class="p">:</span><span class="s">@""</span><span class="p">];</span>
+</code></pre></div></div>
+<blockquote>
+  <p>对于类似于NSNumber类型的数据进行空值判断</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSNumber</span> <span class="o">*</span><span class="n">number</span><span class="p">;</span>
+<span class="n">number</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">number</span> <span class="nv">isEqualToNumber</span><span class="p">:</span><span class="err">@</span><span class="mi">0</span><span class="p">];</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>对于类似于NSArray类型的数据进行空值判断</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSArray</span> <span class="o">*</span><span class="n">array</span><span class="p">;</span>
+<span class="n">array</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">;</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">array</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>对于类似于NSDictionary类型的数据进行空值判断</p>
+</blockquote>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">NSDictionary</span> <span class="o">*</span><span class="n">dictionary</span><span class="p">;</span>
+<span class="p">[</span><span class="n">dictionary</span> <span class="nv">isEqual</span><span class="p">:[</span><span class="kt">NSNull</span> <span class="n">null</span><span class="p">]];</span>
+<span class="c1">//or</span>
+<span class="p">[</span><span class="n">dictionary</span> <span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+:ET
