@@ -2,7 +2,7 @@
 layout: post
 title: 'Sublime Text插件安装方法'
 date: 2017-12-9
-cover: https://i.loli.net/2018/10/14/5bc342b80b937.jpg
+cover: https://raw.githubusercontent.com/sxxjaeho/assets/master/assets/images/images5bc342b80b937.jpg
 categories: Plugins
 tags: Plugins
 ---
